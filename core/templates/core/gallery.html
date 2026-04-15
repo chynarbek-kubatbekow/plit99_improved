@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Галерея{% endblock %}
+{% block nav_gal %}active{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197511/pexels-photo-8197511.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="container page-hero-inner">
+    <div class="page-hero-eyebrow"><span class="badge badge-white">Галерея</span></div>
+    <h1 class="display-lg page-hero-title">Лицей в фотографиях и видео</h1>
+    <p class="lead page-hero-subtitle">Фотографии и видео занятий, событий и повседневной жизни лицея.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if categories %}
+    <div class="gallery-tabs">
+      <a href="{% url 'gallery' %}" class="gallery-tab {% if not active_cat %}active{% endif %}">Все</a>
+      {% for cat in categories %}
+      <a href="?cat={{ cat.slug }}" class="gallery-tab {% if active_cat.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="gallery-grid" data-aos>
+      {% for item in items %}
+        {% if item.media_type == 'photo' and item.image %}
+          <div class="gallery-item section-panel" style="padding:0">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" style="width:100%;display:block">
+            {% if item.title %}<div style="padding:.75rem 1rem;font-size:.82rem;color:var(--gray-600)">{{ item.title }}</div>{% endif %}
+          </div>
+        {% elif item.media_type == 'video' and item.video_url %}
+          <div class="gallery-item section-panel" style="padding:0">
+            <div style="position:relative;padding-bottom:56.25%;background:var(--ocean-900)">
+              <iframe src="{{ item.video_url }}" style="position:absolute;inset:0;width:100%;height:100%;border:none" allowfullscreen loading="lazy"></iframe>
+            </div>
+            {% if item.title %}<div style="padding:.75rem 1rem;font-size:.82rem;color:var(--gray-600)">{{ item.title }}</div>{% endif %}
+          </div>
+        {% endif %}
+      {% empty %}
+      <div class="section-panel" style="grid-column:1/-1;text-align:center;color:var(--gray-400)">
+        <div style="margin-bottom:1rem;display:flex;justify-content:center"><svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--warm-400)"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="1.5"></circle><path d="m21 16-5-5L5 22"></path></svg></div>
+        <div>Материалы галереи скоро появятся</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="media-callout" style="margin-top:2rem" data-aos>
+      <div class="section-mini-title">Дополнительно</div>
+      <div class="soft-card-title">Больше фото и видео в Instagram</div>
+      <div class="soft-card-text">Если вы хотите почувствовать ритм лицея, быстрее всего это сделать через фото и короткие видео из повседневной жизни и мероприятий.</div>
+      <a href="https://instagram.com/99litsey" target="_blank" rel="noopener" class="btn btn-primary" style="width:max-content">@99litsey →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

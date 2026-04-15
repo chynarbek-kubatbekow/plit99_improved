@@ -1,0 +1,160 @@
+﻿{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}О лицее{% endblock %}
+{% block nav_about %}active{% endblock %}
+{% block content %}
+
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197511/pexels-photo-8197511.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="container page-hero-inner">
+    <div class="page-hero-eyebrow"><span class="badge badge-white">О лицее</span></div>
+    <h1 class="display-lg page-hero-title">Лицей с сильной историей и современным технологическим вектором</h1>
+    <p class="lead page-hero-subtitle">История, статус, достижения и ключевая информация о лицее.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="page-summary-grid">
+      <div class="page-summary-card">
+        <div class="section-eyebrow"><span class="label">Кто мы</span></div>
+        <h2 class="section-panel-title">ПЛИТ №99 при Президенте КР</h2>
+        <p class="section-panel-text">Лицей расположен в Бишкеке и сочетает государственный статус, практико-ориентированное IT-образование и международные образовательные связи. Это делает его заметным не только внутри страны, но и в более широком академическом контексте.</p>
+      </div>
+      <div class="page-summary-card dark">
+        <div class="fact-grid">
+          <div class="fact-card"><strong>1971</strong><span>год основания</span></div>
+          <div class="fact-card"><strong>535</strong><span>студентов в 2023–24</span></div>
+          <div class="fact-card"><strong>240</strong><span>бюджетных мест в год + контрактная форма</span></div>
+          <div class="fact-card"><strong>10+</strong><span>международных партнёров</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-offwhite">
+  <div class="container">
+    <div class="section-split">
+      <div class="section-panel">
+        <div class="section-eyebrow"><span class="label">Статус и миссия</span></div>
+        <h2 class="section-panel-title">Зачем существует лицей</h2>
+        <p class="section-panel-text" style="margin-bottom:1rem">Задача лицея — дать молодым людям доступ к качественному технологическому образованию, которое не отрывает их от реальности, а готовит к практическим задачам, университетскому продолжению и международной среде.</p>
+        <div class="notice notice-info">
+          <span class="notice-icon"><svg viewBox="0 0 24 24"><path d="M3 10h18"></path><path d="M5 10V6l7-3 7 3v4"></path><path d="M6 10v8M10 10v8M14 10v8M18 10v8"></path><path d="M4 18h16"></path></svg></span>
+          <div class="notice-text"><strong>Особый статус, подтверждённый в 2023 году,</strong> усиливает автономию лицея и позволяет ему развивать образовательную модель гибче, чем стандартные учреждения.</div>
+        </div>
+      </div>
+      <div class="section-panel dark">
+        <div class="section-eyebrow"><span class="label" style="color:rgba(255,255,255,.7)">Почему это важно</span></div>
+        <h2 class="section-panel-title">Что это даёт ученику и семье</h2>
+        <div class="summary-list">
+          <div class="summary-list-item"><span class="icon-chip">01</span><div><div class="summary-list-title" style="color:#fff">Понимание, куда поступает ребёнок</div><div class="summary-list-text">Сильная история, официальный статус и конкретные цифры помогают семье увидеть реальный уровень лицея, а не просто красивое обещание.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip">02</span><div><div class="summary-list-title" style="color:#fff">Больше уверенности в качестве подготовки</div><div class="summary-list-text">Лицей соединяет базовое образование, IT-направления, языки и практику, поэтому обучение выглядит как серьёзная основа для будущей профессии.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip">03</span><div><div class="summary-list-title" style="color:#fff">Понятная перспектива после выпуска</div><div class="summary-list-text">Для ученика это не только годы учёбы, но и выход к портфолио, дальнейшему обучению, стажировкам и более широким карьерным возможностям.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow"><span class="label">Руководство</span></div>
+      <h2 class="h1">Люди, которые задают ритм и качество работы лицея</h2>
+      <p class="lead" style="max-width:700px;margin:.75rem auto 0">Руководство лицея отвечает за стратегию развития, организацию учебного процесса, воспитательную среду и практическую подготовку студентов.</p>
+    </div>
+    <div class="leadership-grid" data-aos>
+      <article class="staff-card">
+        <div class="staff-card-photo-wrap">
+          <img src="{% static 'img/staff/director-urumkalieva.jpg' %}" alt="Урумкалиева Чинара Чалагызовна" class="staff-card-photo">
+        </div>
+        <div class="staff-card-body">
+          <div class="staff-card-role">Директор</div>
+          <h3 class="staff-card-name">Урумкалиева Чинара Чалагызовна</h3>
+          <p class="staff-card-text">Определяет стратегическое развитие лицея, поддерживает высокий стандарт образовательной среды и помогает соединять сильную академическую базу с современным технологическим вектором.</p>
+        </div>
+      </article>
+      <article class="staff-card">
+        <div class="staff-card-photo-wrap">
+          <img src="{% static 'img/staff/deputy-khismatullina.jpg' %}" alt="Хисматуллина Галия Айбулатовна" class="staff-card-photo">
+        </div>
+        <div class="staff-card-body">
+          <div class="staff-card-role">Заместитель директора по УМР</div>
+          <h3 class="staff-card-name">Хисматуллина Галия Айбулатовна</h3>
+          <p class="staff-card-text">Координирует учебно-методическую работу, следит за качеством образовательного процесса и помогает выстраивать понятную и устойчивую систему подготовки студентов.</p>
+        </div>
+      </article>
+      <article class="staff-card">
+        <div class="staff-card-photo-wrap">
+          <img src="{% static 'img/staff/deputy-ogonbaeva.jpg' %}" alt="Огонбаева Лола Бакытовна" class="staff-card-photo">
+        </div>
+        <div class="staff-card-body">
+          <div class="staff-card-role">Заместитель директора по УВР</div>
+          <h3 class="staff-card-name">Огонбаева Лола Бакытовна</h3>
+          <p class="staff-card-text">Отвечает за воспитательную работу и внутреннюю атмосферу лицея, помогая формировать среду, в которой студентам легче развиваться, проявлять инициативу и чувствовать поддержку.</p>
+        </div>
+      </article>
+      <article class="staff-card">
+        <div class="staff-card-photo-wrap">
+          <img src="{% static 'img/staff/deputy-uzakbaeva.jpg' %}" alt="Узакбаева Нуржамал Эргешбаевна" class="staff-card-photo">
+        </div>
+        <div class="staff-card-body">
+          <div class="staff-card-role">Заместитель директора по ПОиР</div>
+          <h3 class="staff-card-name">Узакбаева Нуржамал Эргешбаевна</h3>
+          <p class="staff-card-text">Курирует практическое обучение и производственную подготовку, чтобы знания студентов опирались не только на теорию, но и на реальные прикладные задачи.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow"><span class="label">История</span></div>
+      <h2 class="h1">Ключевые этапы развития</h2>
+    </div>
+    <div class="section-panel">
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1971</div><div class="timeline-title">Основание лицея</div><div class="timeline-text">ПЛИТ №99 был основан в Бишкеке и со временем превратился в важную площадку технологического образования.</div></div>
+        <div class="timeline-item"><div class="timeline-dot" style="background:var(--amber-500)"></div><div class="timeline-year">15 июня 2023</div><div class="timeline-title">Особый статус</div><div class="timeline-text">Лицей получил специальный статус при Президенте Кыргызской Республики, что стало новой точкой институционального роста.</div></div>
+        <div class="timeline-item"><div class="timeline-dot" style="background:var(--amber-500)"></div><div class="timeline-year">18 августа 2023</div><div class="timeline-title">Официальная регистрация новой модели</div><div class="timeline-text">Формально закрепился обновлённый формат учреждения и его расширенные возможности.</div></div>
+        <div class="timeline-item"><div class="timeline-dot" style="background:var(--ocean-400)"></div><div class="timeline-year">2025–2026</div><div class="timeline-title">Рост международной узнаваемости</div><div class="timeline-text">Участие студентов в крупных технологических инициативах и развитие новых образовательных форматов усилили репутацию лицея.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-offwhite">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow"><span class="label">Достижения</span></div>
+      <h2 class="h1">Чем лицей уже заметен</h2>
+    </div>
+    <div class="grid-2" data-aos>
+      <div class="section-panel soft achievement-card"><div class="summary-list-item"><span class="icon-chip">2/3</span><div><div class="summary-list-title">Призовые места на хакатоне Немецкого института</div><div class="summary-list-text">Студенты показывают конкурентный уровень подготовки не только в учебной среде, но и в внешних профессиональных форматах.</div></div></div></div>
+      <div class="section-panel soft achievement-card"><div class="summary-list-item"><span class="icon-chip">AI</span><div><div class="summary-list-title">AI Summit и TechWomen</div><div class="summary-list-text">Участие в масштабных событиях помогает студентам видеть современную технологическую повестку шире привычной аудитории.</div></div></div></div>
+      <div class="section-panel soft achievement-card"><div class="summary-list-item"><span class="icon-chip">21</span><div><div class="summary-list-title">Пилотная площадка «Школы 21»</div><div class="summary-list-text">Лицей вовлечён в форматы, которые связывают государственное образование и современную цифровую подготовку.</div></div></div></div>
+      <div class="section-panel soft achievement-card"><div class="summary-list-item"><span class="icon-chip">INT</span><div><div class="summary-list-title">Международные партнёрства</div><div class="summary-list-text">Партнёры в России, Китае, Корее и Германии формируют для выпускников более широкий образовательный горизонт.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-block" data-aos>
+      <div class="cta-block-inner">
+        <h2 class="h1 cta-title">После знакомства с лицеем логично перейти к поступлению</h2>
+        <p class="lead cta-text">Если институт, миссия и среда вам близки, следующий шаг — посмотреть порядок поступления и подготовить документы заранее.</p>
+        <div class="cta-actions">
+          <a href="{% url 'admission' %}" class="btn btn-gold btn-lg">Перейти к поступлению</a>
+          <a href="{% url 'contacts' %}" class="btn btn-ghost btn-lg">Связаться с нами</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+

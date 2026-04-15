@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Новости{% endblock %}
+{% block nav_news %}active{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197499/pexels-photo-8197499.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="container page-hero-inner">
+    <div class="page-hero-eyebrow"><span class="badge badge-white">Новости</span></div>
+    <h1 class="display-lg page-hero-title">Жизнь лицея в новостях и событиях</h1>
+    <p class="lead page-hero-subtitle">Главные события, новости и материалы из жизни лицея.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if categories %}
+    <div class="gallery-tabs" style="margin-bottom:2rem">
+      <a href="{% url 'news' %}" class="gallery-tab {% if not active_cat %}active{% endif %}">Все материалы</a>
+      {% for cat in categories %}
+      <a href="?cat={{ cat.slug }}" class="gallery-tab {% if active_cat.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if featured %}
+    <div class="section-panel" style="margin-bottom:2rem;padding:0;overflow:hidden" data-aos>
+      <a href="{{ featured.get_absolute_url }}" style="text-decoration:none">
+        <div class="news-featured-card">
+          {% if featured.cover_image %}
+            <img src="{{ featured.cover_image.url }}" alt="{{ featured.title }}" style="height:100%;min-height:320px;object-fit:cover;width:100%">
+          {% else %}
+            <div class="news-img-placeholder" style="min-height:320px;background:{{ featured.cover_gradient }}">
+              <svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></svg>
+            </div>
+          {% endif %}
+          <div style="padding:clamp(1.4rem,4vw,2.4rem);display:flex;flex-direction:column;justify-content:center">
+            <div style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap">
+              <span class="badge badge-gold">Главное</span>
+              {% if featured.category %}<span class="badge badge-ocean">{{ featured.category.name }}</span>{% endif %}
+            </div>
+            <div class="news-date">{{ featured.published_at|date:"d E Y" }}</div>
+            <div class="news-title" style="font-size:clamp(1.1rem,3vw,1.5rem);margin:.55rem 0 .9rem">{{ featured.title }}</div>
+            <div class="news-excerpt">{{ featured.excerpt }}</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+
+    <div class="masonry-news">
+      {% for item in news_list %}
+      <a href="{{ item.get_absolute_url }}" style="text-decoration:none" data-aos data-delay="{{ forloop.counter0|add:'0' }}00">
+        <div class="news-card">
+          {% if item.cover_image %}
+            <img src="{{ item.cover_image.url }}" alt="{{ item.title }}" class="news-img">
+          {% else %}
+            <div class="news-img-placeholder" style="height:200px;background:{{ item.cover_gradient }}">
+              <svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></svg>
+            </div>
+          {% endif %}
+          <div class="news-body">
+            {% if item.category %}<span class="badge {{ item.category.color }}" style="margin-bottom:.5rem;display:inline-flex">{{ item.category.name }}</span>{% endif %}
+            <div class="news-date">{{ item.published_at|date:"d E Y" }}</div>
+            <div class="news-title">{{ item.title }}</div>
+            <div class="news-excerpt">{{ item.excerpt|truncatechars:150 }}</div>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <div class="section-panel" style="text-align:center;color:var(--gray-400)">
+        <div style="margin-bottom:1rem;display:flex;justify-content:center"><svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--warm-400)"><path d="M4 7h16v10H4z"></path><path d="m4 8 8 6 8-6"></path></svg></div>
+        <div>Новости скоро появятся</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,183 @@
+﻿{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Поступление{% endblock %}
+{% block nav_adm %}active{% endblock %}
+{% block content %}
+
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197499/pexels-photo-8197499.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="container page-hero-inner">
+    <div class="page-hero-eyebrow"><span class="badge badge-white">Поступление 2026</span></div>
+    <h1 class="display-lg page-hero-title">Поступление без лишней сложности</h1>
+    <p class="lead page-hero-subtitle">Сроки, этапы, документы и ответы на частые вопросы о поступлении.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="page-summary-grid">
+      <div class="page-summary-card">
+        <div class="section-eyebrow"><span class="label">Быстрый старт</span></div>
+        <h2 class="section-panel-title">Что важно знать сразу</h2>
+        <div class="quick-links">
+          <a href="#routes" class="quick-link"><span>Форматы поступления</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"></path></svg></a>
+          <a href="#timeline" class="quick-link"><span>Этапы и сроки</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"></path></svg></a>
+          <a href="#docs" class="quick-link"><span>Список документов</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"></path></svg></a>
+          <a href="#faq" class="quick-link"><span>Частые вопросы</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"></path></svg></a>
+        </div>
+      </div>
+      <div class="page-summary-card dark">
+        <div class="section-mini-title">Кратко</div>
+        <div class="summary-list">
+          <div class="summary-list-item">
+            <span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M7 2v4M17 2v4"></path><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path></svg></span>
+            <div><div class="summary-list-title" style="color:#fff">Приём заявок</div><div class="summary-list-text">С 1 июля 2026 года</div></div>
+          </div>
+          <div class="summary-list-item">
+            <span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5z"></path><path d="M6 11.5V16c0 1.8 3 3.5 6 3.5s6-1.7 6-3.5v-4.5"></path></svg></span>
+            <div><div class="summary-list-title" style="color:#fff">Формы обучения</div><div class="summary-list-text">240 бюджетных мест ежегодно и контрактная форма обучения</div></div>
+          </div>
+          <div class="summary-list-item">
+            <span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg></span>
+            <div><div class="summary-list-title" style="color:#fff">Форматы</div><div class="summary-list-text">После 9 и после 11 класса</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="routes" class="section section-offwhite">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow"><span class="label">Форматы поступления</span></div>
+      <h2 class="h1">Два маршрута поступления</h2>
+    </div>
+    <div class="split-hero-cards" data-aos>
+      <div class="info-panel info-panel-dark">
+        <div class="section-mini-title">После 9 класса</div>
+        <div style="font-family:var(--font-display);font-size:2.1rem;color:var(--gold-400);line-height:1;margin-bottom:.65rem">2 года</div>
+        <p class="muted-on-dark" style="font-size:.9rem;line-height:1.8;margin-bottom:1rem">Подходит тем, кто хочет пройти полноценный путь: школьная программа 10–11 класса, профессиональная подготовка и портфолио проектов.</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span class="badge badge-white">Аттестат</span>
+          <span class="badge badge-white">Диплом</span>
+          <span class="badge badge-white">Портфолио</span>
+        </div>
+      </div>
+      <div class="info-panel">
+        <div class="section-mini-title">После 11 класса</div>
+        <div style="font-family:var(--font-display);font-size:2.1rem;color:var(--primary-700);line-height:1;margin-bottom:.65rem">10 месяцев</div>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--gray-600);margin-bottom:1rem">Ускоренный формат для тех, кто уже завершает школу и хочет быстрее перейти к прикладной IT-подготовке и карьерному треку.</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span class="badge badge-primary">Диплом</span>
+          <span class="badge badge-primary">Портфолио</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow"><span class="label">Timeline</span></div>
+      <h2 class="h1">Этапы поступления</h2>
+      <p class="lead" style="max-width:620px;margin-top:.75rem">Весь процесс поступления от подачи документов до зачисления.</p>
+    </div>
+    <div class="admissions-table" data-aos>
+      <article class="admissions-cell">
+        <div class="admissions-cell-label">Шаг 1</div>
+        <div class="admissions-cell-title">Подача заявки</div>
+        <div class="admissions-cell-text">Подготовьте пакет документов и подайте заявку с 1 июля через приёмную комиссию.</div>
+      </article>
+      <article class="admissions-cell">
+        <div class="admissions-cell-label">Шаг 2</div>
+        <div class="admissions-cell-title">Тестирование</div>
+        <div class="admissions-cell-text">Математика, английский язык и язык обучения. IT-подготовка заранее не требуется.</div>
+      </article>
+      <article class="admissions-cell">
+        <div class="admissions-cell-label">Шаг 3</div>
+        <div class="admissions-cell-title">Зачисление</div>
+        <div class="admissions-cell-text">После прохождения конкурсного отбора абитуриент получает подтверждение и готовится к старту учебного года.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream">
+  <div class="container">
+    <div class="section-split">
+      <div class="section-panel">
+        <div class="section-eyebrow"><span class="label">Вступительные испытания</span></div>
+        <h2 class="section-panel-title">Что нужно сдавать</h2>
+        <p class="section-panel-text" style="margin-bottom:1rem">Тесты проверяют школьную базу, а не знание программирования. Это важный принцип: сильная мотивация и готовность учиться здесь ценятся не меньше стартового опыта.</p>
+        <div class="summary-list">
+          <div class="summary-list-item"><span class="icon-chip">1</span><div><div class="summary-list-title">Математика</div><div class="summary-list-text">Базовый школьный курс и логика.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip">2</span><div><div class="summary-list-title">Английский язык</div><div class="summary-list-text">Проверка уровня, достаточного для академической траектории.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip">3</span><div><div class="summary-list-title">Русский или кыргызский язык</div><div class="summary-list-text">По выбранному языку обучения.</div></div></div>
+        </div>
+      </div>
+      <div class="section-panel dark">
+        <div class="section-eyebrow"><span class="label" style="color:rgba(255,255,255,.7)">Что учитывать</span></div>
+        <h2 class="section-panel-title">Ключевые замечания для семьи</h2>
+        <div class="summary-list">
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.8c.6.42 1 1.06 1.16 1.78L9.3 17h5.4l.14-.42c.16-.72.56-1.36 1.16-1.78A7 7 0 0 0 12 2z"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Программирование заранее не требуется</div><div class="summary-list-text">Подготовка в лицее выстроена так, чтобы стартовать можно было с разного уровня.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 10v6"></path><path d="M12 7h.01"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Формы обучения</div><div class="summary-list-text">Обучение возможно на бюджетной и контрактной основе. Стоимость контракта уточняйте у администрации в разделе контактов.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M7 2v4M17 2v4"></path><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Приём начинается 1 июля</div><div class="summary-list-text">Это основной ориентир для планирования всей приёмной кампании.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="docs" class="section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow"><span class="label">Документы</span></div>
+      <h2 class="h1">Список документов</h2>
+    </div>
+    <div class="docs-grid" data-aos>
+      <div class="doc-item"><div class="doc-num">1</div><div class="doc-text"><strong>Аттестат или свидетельство об образовании</strong> — оригинал и копия</div></div>
+      <div class="doc-item"><div class="doc-num">2</div><div class="doc-text"><strong>Паспорт или свидетельство о рождении</strong> — оригинал и копия</div></div>
+      <div class="doc-item"><div class="doc-num">3</div><div class="doc-text"><strong>Копии паспортов родителей</strong> или законных представителей</div></div>
+      <div class="doc-item"><div class="doc-num">4</div><div class="doc-text"><strong>Справка с места жительства</strong> и о составе семьи</div></div>
+      <div class="doc-item"><div class="doc-num">5</div><div class="doc-text"><strong>Медицинская справка</strong> по форме 086-У</div></div>
+      <div class="doc-item"><div class="doc-num">6</div><div class="doc-text"><strong>Фотографии 3x4</strong> — 4 штуки</div></div>
+      <div class="doc-item"><div class="doc-num">7</div><div class="doc-text"><strong>Приписное свидетельство</strong> — для юношей</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section section-offwhite">
+  <div class="container">
+    <div style="max-width:760px;margin:0 auto">
+      <div class="section-header centered">
+        <div class="section-eyebrow"><span class="label">FAQ</span></div>
+        <h2 class="h1">Частые вопросы о поступлении</h2>
+      </div>
+      <div class="faq" data-aos>
+        <div class="faq-item"><div class="faq-q">Нужно ли знать программирование заранее?<div class="faq-icon">+</div></div><div class="faq-a">Нет. Лицей принимает абитуриентов с разным стартовым уровнем и строит обучение так, чтобы практические навыки росли уже в процессе.</div></div>
+        <div class="faq-item"><div class="faq-q">Сколько бюджетных мест?<div class="faq-icon">+</div></div><div class="faq-a">Ежегодно выделяется 240 бюджетных мест. Также доступно обучение на контрактной основе.</div></div>
+        <div class="faq-item"><div class="faq-q">Обучение действительно бесплатное?<div class="faq-icon">+</div></div><div class="faq-a">Бюджетные места предполагают бесплатное обучение. Также в лицее есть контрактная форма, а стоимость обучения нужно уточнять у администрации в разделе контактов.</div></div>
+        <div class="faq-item"><div class="faq-q">Какие документы получает выпускник?<div class="faq-icon">+</div></div><div class="faq-a">После 9 класса — аттестат и диплом, после 11 класса — диплом о профессиональной подготовке. В обоих случаях важную роль играет портфолио проектов.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-block" data-aos>
+      <div class="cta-block-inner">
+        <h2 class="h1 cta-title">Следующий шаг — связаться с приёмной комиссией</h2>
+        <p class="lead cta-text">Если вы уже серьёзно рассматриваете ПЛИТ №99, удобнее всего начать с контактов и уточнения деталей по подаче документов.</p>
+        <div class="cta-actions">
+          <a href="{% url 'contacts' %}" class="btn btn-gold btn-lg">Контакты приёмной комиссии</a>
+          <a href="{% url 'education' %}" class="btn btn-ghost btn-lg">Посмотреть направления</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+

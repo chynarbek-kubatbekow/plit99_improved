@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>{% block title %}ПЛИТ №99{% endblock %} — Профессиональный лицей IT при Президенте КР</title>
+  <meta name="description" content="{% block meta_desc %}Профессиональный лицей информационных технологий №99 при Президенте КР. Бесплатное IT-образование в Бишкеке с 1971 года.{% endblock %}">
+  <meta name="theme-color" content="#0A2540">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon-plit99.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/favicon-plit99.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Golos+Text:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+<button class="scroll-top" aria-label="Наверх">↑</button>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="{% url 'index' %}" class="nav-logo">
+        <div class="nav-logo-emblem">
+          <img src="{% static 'img/plit99-logo.jpg' %}" alt="Логотип ПЛИТ №99" class="site-logo-mark">
+        </div>
+        <div class="nav-logo-text">
+          <span class="name">ПЛИТ №99</span>
+          <span class="sub">При Президенте КР</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="{% url 'index' %}"      class="nav-link {% block nav_home %}{% endblock %}">Главная</a>
+        <a href="{% url 'about' %}"      class="nav-link {% block nav_about %}{% endblock %}">О лицее</a>
+        <a href="{% url 'education' %}"  class="nav-link {% block nav_edu %}{% endblock %}">Обучение/Направления</a>
+        <a href="{% url 'results' %}"    class="nav-link {% block nav_res %}{% endblock %}">Возможности</a>
+        <a href="{% url 'admission' %}"  class="nav-link {% block nav_adm %}{% endblock %}">Поступление</a>
+        <a href="{% url 'news' %}"       class="nav-link {% block nav_news %}{% endblock %}">Новости</a>
+        <a href="{% url 'gallery' %}"    class="nav-link {% block nav_gal %}{% endblock %}">Галерея</a>
+        <a href="{% url 'contacts' %}"   class="nav-link {% block nav_con %}{% endblock %}">Контакты</a>
+        <a href="{% url 'admission' %}" class="nav-cta-desktop">Поступить →</a>
+      </div>
+      <button class="nav-burger" id="nav-burger" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Мобильное меню">
+  <a href="{% url 'index' %}"     class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Главная
+  </a>
+  <a href="{% url 'about' %}"     class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    О лицее
+  </a>
+  <a href="{% url 'education' %}" class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    Обучение/Направления
+  </a>
+  <a href="{% url 'results' %}"   class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+    Возможности
+  </a>
+  <a href="{% url 'admission' %}" class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    Поступление
+  </a>
+  <a href="{% url 'news' %}"      class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6z"/></svg>
+    Новости
+  </a>
+  <a href="{% url 'gallery' %}"   class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Галерея
+  </a>
+  <a href="{% url 'contacts' %}"  class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Контакты
+  </a>
+  <div class="nav-mobile-divider"></div>
+  <a href="{% url 'admission' %}" class="nav-mobile-cta">Поступить в лицей →</a>
+</div>
+
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-brand-badge">
+            <img src="{% static 'img/plit99-logo.jpg' %}" alt="Логотип ПЛИТ №99" class="site-logo-mark">
+          </div>
+          <div>
+            <div class="footer-brand-name">ПЛИТ №99</div>
+            <div class="footer-brand-sub">При Президенте КР</div>
+          </div>
+        </div>
+        <p class="footer-desc">Профессиональный лицей информационных технологий №99 — современное IT-образование в Бишкеке с 1971 года. Бесплатно, практично, с реальным выходом на международный рынок труда.</p>
+        <div class="footer-contacts">
+          <div class="footer-contact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ул. Горького 18, Бишкек
+          </div>
+          <div class="footer-contact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +996 703 331 895
+          </div>
+          <div class="footer-contact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +996 777 642 156
+          </div>
+          <div class="footer-contact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +996 709 601 840
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Навигация</div>
+        <div class="footer-links">
+          <a href="{% url 'index' %}"     class="footer-link">Главная</a>
+          <a href="{% url 'about' %}"     class="footer-link">О лицее</a>
+          <a href="{% url 'education' %}" class="footer-link">Обучение</a>
+          <a href="{% url 'results' %}"   class="footer-link">Возможности</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Абитуриентам</div>
+        <div class="footer-links">
+          <a href="{% url 'admission' %}#docs" class="footer-link">Документы</a>
+          <a href="{% url 'admission' %}#faq"  class="footer-link">Вопросы и ответы</a>
+          <a href="{% url 'news' %}"           class="footer-link">Новости лицея</a>
+          <a href="{% url 'gallery' %}"        class="footer-link">Галерея</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Контакты</div>
+        <div class="footer-links">
+          <a href="{% url 'contacts' %}" class="footer-link">Адрес и карта</a>
+          <a href="https://instagram.com/99litsey" target="_blank" rel="noopener" class="footer-link">Instagram @99litsey</a>
+          <a href="tel:+996703331895" class="footer-link">+996 703 331 895</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">© 2026 ПЛИТ №99 при Президенте Кыргызской Республики</div>
+      <div class="footer-bottom-text">г. Бишкек, ул. Горького 18 · Основан в 1971 году</div>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

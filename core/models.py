@@ -1,0 +1,96 @@
+from django.db import models
+from django.utils import timezone
+from django.utils.text import slugify
+import uuid
+
+
+class NewsCategory(models.Model):
+    name = models.CharField('Название', max_length=100)
+    slug = models.SlugField('Slug', unique=True)
+    color = models.CharField('Цвет (CSS класс)', max_length=50, default='badge-gray')
+
+    class Meta:
+        verbose_name = 'Категория новостей'
+        verbose_name_plural = 'Категории новостей'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class News(models.Model):
+    title        = models.CharField('Заголовок', max_length=300)
+    slug         = models.SlugField('Slug', unique=True, blank=True, max_length=320)
+    excerpt      = models.TextField('Краткое описание', max_length=400)
+    content      = models.TextField('Полный текст')
+    cover_image  = models.ImageField('Обложка', upload_to='news/covers/', blank=True, null=True)
+    cover_emoji  = models.CharField('Эмодзи обложки', max_length=10, default='📰')
+    cover_gradient = models.CharField(
+        'Градиент обложки', max_length=120,
+        default='linear-gradient(135deg,#0D3060,#1668C0)'
+    )
+    category     = models.ForeignKey(
+        NewsCategory, on_delete=models.SET_NULL,
+        null=True, blank=True, verbose_name='Категория', related_name='news'
+    )
+    is_featured  = models.BooleanField('Главная новость', default=False)
+    is_published = models.BooleanField('Опубликована', default=True)
+    published_at = models.DateTimeField('Дата публикации', default=timezone.now)
+    created_at   = models.DateTimeField('Создана', auto_now_add=True)
+    updated_at   = models.DateTimeField('Обновлена', auto_now=True)
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+        ordering = ['-published_at']
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.title, allow_unicode=False)
+            self.slug = base if base else str(uuid.uuid4())[:8]
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('news_detail', kwargs={'slug': self.slug})
+
+
+class GalleryCategory(models.Model):
+    name  = models.CharField('Название', max_length=100)
+    slug  = models.SlugField('Slug', unique=True)
+    order = models.PositiveIntegerField('Порядок', default=0)
+
+    class Meta:
+        verbose_name = 'Категория галереи'
+        verbose_name_plural = 'Категории галереи'
+        ordering = ['order', 'name']
+
+    def __str__(self):
+        return self.name
+
+
+class GalleryItem(models.Model):
+    MEDIA_CHOICES = [('photo', 'Фотография'), ('video', 'Видео (ссылка)')]
+
+    title      = models.CharField('Подпись', max_length=200, blank=True)
+    media_type = models.CharField('Тип', max_length=10, choices=MEDIA_CHOICES, default='photo')
+    image      = models.ImageField('Фото', upload_to='gallery/', blank=True, null=True)
+    video_url  = models.URLField('Ссылка на видео', blank=True)
+    category   = models.ForeignKey(
+        GalleryCategory, on_delete=models.SET_NULL,
+        null=True, blank=True, verbose_name='Категория', related_name='items'
+    )
+    is_published = models.BooleanField('Опубликовано', default=True)
+    order        = models.PositiveIntegerField('Порядок', default=0)
+    created_at   = models.DateTimeField('Добавлено', auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Элемент галереи'
+        verbose_name_plural = 'Галерея'
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return self.title or f'Медиа #{self.pk}'
