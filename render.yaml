@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: plit99-web
+    runtime: python
+    buildCommand: "bash build.sh"
+    startCommand: "gunicorn plit99_project.wsgi:application"
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: DEBUG
+        value: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 1
+      - key: ALLOWED_HOSTS
+        value: "plit99-web.onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://plit99-web.onrender.com"
