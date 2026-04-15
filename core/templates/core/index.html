@@ -1,5 +1,5 @@
 ﻿{% extends 'core/base.html' %}
-{% load static %}
+{% load static news_media %}
 {% block title %}Главная{% endblock %}
 {% block body_class %}home-page{% endblock %}
 {% block nav_home %}active{% endblock %}
@@ -225,8 +225,8 @@
     <div style="margin-bottom:1.5rem" data-aos>
       <a href="{{ featured_news.get_absolute_url }}" style="text-decoration:none">
         <div class="news-card">
-          {% if featured_news.cover_image %}
-            <img src="{{ featured_news.cover_image.url }}" alt="{{ featured_news.title }}" style="height:280px;object-fit:cover;width:100%;border-radius:var(--radius-lg) var(--radius-lg) 0 0">
+          {% if featured_news|news_static_cover %}
+            <img src="{{ featured_news|news_static_cover }}" alt="{{ featured_news.title }}" style="height:280px;object-fit:cover;width:100%;border-radius:var(--radius-lg) var(--radius-lg) 0 0">
           {% else %}
             <div class="news-img-placeholder" style="min-height:280px;border-radius:var(--radius-lg) var(--radius-lg) 0 0">
               <svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></svg>
@@ -247,8 +247,8 @@
       {% for item in latest_news %}
       <a href="{{ item.get_absolute_url }}" style="text-decoration:none" data-aos data-delay="{{ forloop.counter0 }}00">
         <div class="news-card">
-          {% if item.cover_image %}
-            <img src="{{ item.cover_image.url }}" alt="{{ item.title }}" class="news-img">
+          {% if item|news_static_cover %}
+            <img src="{{ item|news_static_cover }}" alt="{{ item.title }}" class="news-img">
           {% else %}
             <div class="news-img-placeholder" style="background:{{ item.cover_gradient }}">
               <svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></svg>
