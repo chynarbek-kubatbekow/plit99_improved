@@ -29,6 +29,16 @@ LOAD_FIXTURE_ON_DEPLOY=true
 
 After the first successful deploy, switch it back to `false` or remove it.
 
+5. If you do not have Render Shell, you can create the Django admin user automatically during deploy with:
+
+```text
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=your@email.com
+DJANGO_SUPERUSER_PASSWORD=your-strong-password
+```
+
+The deploy script will create the superuser only if it does not already exist.
+
 ## Important Notes
 
 ### Database

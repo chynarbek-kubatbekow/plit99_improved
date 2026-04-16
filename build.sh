@@ -8,3 +8,5 @@ python manage.py migrate
 if [ "${LOAD_FIXTURE_ON_DEPLOY:-false}" = "true" ]; then
   python manage.py loaddata core/fixtures/content.json
 fi
+
+python manage.py create_admin_if_missing
