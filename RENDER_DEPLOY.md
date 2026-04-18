@@ -63,7 +63,8 @@ This project also applies SQLite-safe settings for Render:
 
 - `WEB_CONCURRENCY=1` to avoid multi-process write conflicts
 - SQLite connection timeout
-- WAL mode and related PRAGMA tuning on connect
+- PRAGMA tuning on connect
+- `SQLITE_JOURNAL_MODE=DELETE` on Render to avoid WAL/shm issues on hosted disks
 
 ### Media Files
 

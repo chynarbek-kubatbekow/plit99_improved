@@ -20,6 +20,8 @@ services:
         value: 1
       - key: APP_DATA_DIR
         value: /opt/render/project/src/.render-data
+      - key: SQLITE_JOURNAL_MODE
+        value: DELETE
       - key: SERVE_MEDIA_FILES
         value: true
       - key: ALLOWED_HOSTS
