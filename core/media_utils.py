@@ -1,12 +1,17 @@
+import logging
+import shutil
 from io import BytesIO
 from pathlib import Path
 from uuid import uuid4
 
+from django.conf import settings
 from django.core.files.base import ContentFile
+from django.utils._os import safe_join
 from PIL import Image, ImageOps
 
 
 MAX_IMAGE_SIZE = (1600, 1600)
+logger = logging.getLogger(__name__)
 
 
 def build_upload_path(directory, filename):
@@ -58,3 +63,66 @@ def optimize_uploaded_image(uploaded_file):
     optimized_file = ContentFile(output.getvalue())
     optimized_file.name = f'{stem}{extension}'
     return optimized_file
+
+
+def _safe_media_path(root, relative_path):
+    if not relative_path:
+        return None
+
+    normalized = str(relative_path).replace('\\', '/').lstrip('/')
+    try:
+        return Path(safe_join(str(root), normalized))
+    except ValueError:
+        return None
+
+
+def resolve_media_file_path(relative_path):
+    if not relative_path:
+        return None
+
+    candidate_roots = [Path(settings.MEDIA_ROOT)]
+    mirror_root = getattr(settings, 'LOCAL_MEDIA_MIRROR_ROOT', None)
+    if mirror_root:
+        mirror_path = Path(mirror_root)
+        if mirror_path not in candidate_roots:
+            candidate_roots.append(mirror_path)
+
+    for root in candidate_roots:
+        candidate = _safe_media_path(root, relative_path)
+        if candidate and candidate.is_file():
+            return candidate
+
+    return None
+
+
+def stored_media_exists(relative_path):
+    return resolve_media_file_path(relative_path) is not None
+
+
+def mirror_media_file(relative_path):
+    if not relative_path or not getattr(settings, 'LOCAL_MEDIA_MIRROR_ENABLED', False):
+        return
+
+    source = _safe_media_path(settings.MEDIA_ROOT, relative_path)
+    if not source or not source.is_file():
+        return
+
+    destination_root = getattr(settings, 'LOCAL_MEDIA_MIRROR_ROOT', None)
+    if not destination_root:
+        return
+
+    destination = _safe_media_path(destination_root, relative_path)
+    if not destination or source == destination:
+        return
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+
+    try:
+        if destination.is_file():
+            same_size = destination.stat().st_size == source.stat().st_size
+            same_mtime = int(destination.stat().st_mtime) == int(source.stat().st_mtime)
+            if same_size and same_mtime:
+                return
+        shutil.copy2(source, destination)
+    except OSError:
+        logger.exception('Could not mirror media file %s to %s.', source, destination)

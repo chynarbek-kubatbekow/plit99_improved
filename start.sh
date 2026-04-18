@@ -12,6 +12,7 @@ if [ "${LOAD_FIXTURE_ON_DEPLOY:-false}" = "true" ]; then
 fi
 
 python manage.py create_admin_if_missing
+python manage.py refresh_content_snapshot --safe
 
 exec gunicorn plit99_project.wsgi:application \
   --bind 0.0.0.0:${PORT:-10000} \

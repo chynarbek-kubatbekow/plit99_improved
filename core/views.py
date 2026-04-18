@@ -3,6 +3,8 @@ import logging
 from django.db import OperationalError, ProgrammingError
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
+
+from .content_snapshot import load_content_snapshot
 from .models import News, NewsCategory, GalleryItem, GalleryCategory
 
 
@@ -17,6 +19,50 @@ def _log_database_unavailable(page_name):
     )
 
 
+def _snapshot_category_or_404(categories, slug):
+    for category in categories:
+        if category.slug == slug:
+            return category
+    raise Http404('Requested category was not found.')
+
+
+def _snapshot_news_state(category_slug=None):
+    snapshot = load_content_snapshot()
+    categories = snapshot.news_categories
+    news_items = [item for item in snapshot.news if item.is_published]
+    active_cat = None
+
+    if category_slug:
+        active_cat = _snapshot_category_or_404(categories, category_slug)
+        news_items = [
+            item for item in news_items
+            if item.category and item.category.slug == active_cat.slug
+        ]
+
+    featured = next((item for item in news_items if item.is_featured), None)
+    news_list = [
+        item for item in news_items
+        if not featured or item.slug != featured.slug
+    ]
+    return snapshot, categories, active_cat, featured, news_list
+
+
+def _snapshot_gallery_state(category_slug=None):
+    snapshot = load_content_snapshot()
+    categories = snapshot.gallery_categories
+    gallery_items = [item for item in snapshot.gallery if item.is_published]
+    active_cat = None
+
+    if category_slug:
+        active_cat = _snapshot_category_or_404(categories, category_slug)
+        gallery_items = [
+            item for item in gallery_items
+            if item.category and item.category.slug == active_cat.slug
+        ]
+
+    return snapshot, categories, active_cat, gallery_items
+
+
 def index(request):
     featured_news = None
     latest_news = []
@@ -27,8 +73,8 @@ def index(request):
         )[:3])
     except DB_EXCEPTIONS:
         _log_database_unavailable('index')
-        featured_news = None
-        latest_news = []
+        _, _, _, featured_news, latest_news = _snapshot_news_state()
+        latest_news = latest_news[:3]
 
     return render(request, 'core/index.html', {
         'featured_news': featured_news,
@@ -86,13 +132,19 @@ def media_hub(request):
         gallery_items = list(gallery_qs)
     except DB_EXCEPTIONS:
         _log_database_unavailable('media_hub')
-        news_categories = []
-        gallery_categories = []
-        active_news_cat = None
+        snapshot, news_categories, active_news_cat, featured, news_list = _snapshot_news_state(
+            request.GET.get('news_cat')
+        )
+        gallery_categories = snapshot.gallery_categories
+        gallery_items = [item for item in snapshot.gallery if item.is_published]
+        gallery_cat_slug = request.GET.get('gallery_cat')
         active_gallery_cat = None
-        featured = None
-        news_list = []
-        gallery_items = []
+        if gallery_cat_slug:
+            active_gallery_cat = _snapshot_category_or_404(gallery_categories, gallery_cat_slug)
+            gallery_items = [
+                item for item in gallery_items
+                if item.category and item.category.slug == active_gallery_cat.slug
+            ]
 
     return render(request, 'core/media_hub.html', {
         'view_mode': view_mode,
@@ -124,10 +176,7 @@ def news_list(request):
         news_qs = list(news_qs.exclude(pk=featured.pk if featured else 0))
     except DB_EXCEPTIONS:
         _log_database_unavailable('news_list')
-        categories = []
-        news_qs = []
-        active_cat = None
-        featured = None
+        _, categories, active_cat, featured, news_qs = _snapshot_news_state(category_slug)
 
     return render(request, 'core/news.html', {
         'news_list': news_qs,
@@ -146,7 +195,21 @@ def news_detail(request, slug):
             'Database is unavailable while rendering news_detail for slug=%s.',
             slug,
         )
-        raise Http404('News content is temporarily unavailable.')
+        snapshot = load_content_snapshot()
+        news = next(
+            (
+                item for item in snapshot.news
+                if item.slug == slug and item.is_published
+            ),
+            None,
+        )
+        if not news:
+            raise Http404('News content is temporarily unavailable.')
+
+        related = [
+            item for item in snapshot.news
+            if item.is_published and item.slug != news.slug
+        ][:3]
 
     return render(request, 'core/news_detail.html', {'news': news, 'related': related})
 
@@ -166,9 +229,7 @@ def gallery(request):
         items_qs = list(items_qs)
     except DB_EXCEPTIONS:
         _log_database_unavailable('gallery')
-        categories = []
-        items_qs = []
-        active_cat = None
+        _, categories, active_cat, items_qs = _snapshot_gallery_state(category_slug)
 
     return render(request, 'core/gallery.html', {
         'items': items_qs,

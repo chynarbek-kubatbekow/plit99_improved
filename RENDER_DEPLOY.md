@@ -64,6 +64,25 @@ This project also applies SQLite-safe settings for Render:
 - SQLite connection timeout
 - PRAGMA tuning on connect
 - `SQLITE_JOURNAL_MODE=DELETE` on Render to avoid WAL/shm issues on hosted disks
+- signed-cookie sessions on Render by default, so `/admin/` does not depend on SQLite session writes
+
+### Admin Panel
+
+If you want to sign in to `/admin/` right after deploy, set:
+
+```text
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=your@email.com
+DJANGO_SUPERUSER_PASSWORD=your-strong-password
+```
+
+The deploy script runs:
+
+```bash
+python manage.py create_admin_if_missing
+```
+
+and now also refreshes the JSON content snapshot automatically.
 
 ### Media Files
 
@@ -77,6 +96,17 @@ That means:
 
 - static files are safe because `collectstatic` + WhiteNoise are configured
 - uploaded media files need a persistent disk or external object storage
+
+### Content Snapshot Fallback
+
+News and gallery content are now duplicated into JSON snapshot files automatically:
+
+- runtime snapshot: `APP_DATA_DIR/content_snapshot/site_content.json`
+- project mirror snapshot: `core/fixtures/site_content.json`
+
+Uploaded images are also mirrored into the project `media/` directory when possible.
+
+If the database becomes unavailable later, public pages (`/news/`, `/gallery/`, `/media/`, news detail pages) fall back to the snapshot JSON plus media files instead of crashing.
 
 ## Useful Commands After First Deploy
 
@@ -96,6 +126,12 @@ If you want to load the exported database content manually:
 
 ```bash
 python manage.py loaddata core/fixtures/content.json
+```
+
+If you want to refresh the runtime/public snapshot manually:
+
+```bash
+python manage.py refresh_content_snapshot
 ```
 
 Run these from the Render shell after the first successful deploy.

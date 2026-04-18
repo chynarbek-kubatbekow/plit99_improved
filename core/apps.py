@@ -6,3 +6,4 @@ class CoreConfig(AppConfig):
 
     def ready(self):
         from . import sqlite_config  # noqa: F401
+        from . import signals  # noqa: F401

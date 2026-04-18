@@ -1035,7 +1035,7 @@ var(--page-hero-image, linear-gradient(180deg,#0d2743 0%, #16375a 100%));backgro
     line-height:1.12;
   }
   .about-hero-title span:first-child{
-    white-space:nowrap;
+    white-space:normal;
   }
   .education-hero-title{
     font-size:clamp(1.95rem,4.2vw,3.2rem);
