@@ -14,6 +14,14 @@ NEWS_STATIC_COVERS = {
 
 @register.filter
 def news_static_cover(news):
+    cover_image = getattr(news, 'cover_image', None)
+    if cover_image and getattr(cover_image, 'name', ''):
+        try:
+            if cover_image.storage.exists(cover_image.name):
+                return cover_image.url
+        except OSError:
+            pass
+
     slug = getattr(news, 'slug', '')
     path = NEWS_STATIC_COVERS.get(slug)
     return static(path) if path else ''

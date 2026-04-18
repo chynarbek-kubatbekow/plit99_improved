@@ -4,6 +4,7 @@
 
 - `render.yaml`
 - `build.sh`
+- `start.sh`
 - `.env.example`
 - updated `requirements.txt`
 - production-ready `plit99_project/settings.py`
@@ -20,8 +21,9 @@
 
 1. Create a new **Web Service** from your GitHub repo.
 2. Render should detect `render.yaml` automatically.
-3. For production, use a **PostgreSQL** database and set its connection string as `DATABASE_URL`.
-4. If you want the site content to be loaded automatically on the first deploy, add:
+3. For this project, the recommended setup is **SQLite on the Render persistent disk**.
+4. No separate Render database is required if you keep the default SQLite setup.
+5. If you want the site content to be loaded automatically on the first deploy, add:
 
 ```text
 LOAD_FIXTURE_ON_DEPLOY=true
@@ -29,7 +31,7 @@ LOAD_FIXTURE_ON_DEPLOY=true
 
 After the first successful deploy, switch it back to `false` or remove it.
 
-5. If you do not have Render Shell, you can create the Django admin user automatically during deploy with:
+6. If you do not have Render Shell, you can create the Django admin user automatically during deploy with:
 
 ```text
 DJANGO_SUPERUSER_USERNAME=admin
@@ -46,9 +48,22 @@ The deploy script will create the superuser only if it does not already exist.
 The project is now configured like this:
 
 - local development: SQLite by default
-- Render production: PostgreSQL via `DATABASE_URL`
+- Render production: SQLite on the persistent disk by default
+- uploaded media: persistent disk via `APP_DATA_DIR`
 
-If `DATABASE_URL` is not set, the app falls back to SQLite.
+If `DATABASE_URL` is not set, the app uses SQLite automatically.
+
+For Render, nothing special needs to be "activated" inside Django:
+
+- the persistent disk is attached in `render.yaml`
+- `APP_DATA_DIR` points Django to that disk
+- `python manage.py migrate` creates the SQLite database there automatically on first deploy
+
+This project also applies SQLite-safe settings for Render:
+
+- `WEB_CONCURRENCY=1` to avoid multi-process write conflicts
+- SQLite connection timeout
+- WAL mode and related PRAGMA tuning on connect
 
 ### Media Files
 
@@ -56,10 +71,12 @@ Your project uses `media/` for uploaded files.
 
 On Render, local filesystem storage is not permanent across deploys unless you attach persistent storage or move media to an external storage service.
 
+This project now stores uploaded media inside `APP_DATA_DIR`. In `render.yaml`, that path is mounted to a persistent disk by default.
+
 That means:
 
 - static files are safe because `collectstatic` + WhiteNoise are configured
-- uploaded media files need special handling
+- uploaded media files need a persistent disk or external object storage
 
 ## Useful Commands After First Deploy
 

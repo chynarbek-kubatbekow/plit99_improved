@@ -29,6 +29,43 @@ def admission(request):
     return render(request, 'core/admission.html')
 
 
+def media_hub(request):
+    view_mode = request.GET.get('view', 'all')
+    if view_mode not in {'all', 'news', 'gallery'}:
+        view_mode = 'all'
+
+    news_categories = NewsCategory.objects.all()
+    gallery_categories = GalleryCategory.objects.all()
+
+    news_qs = News.objects.filter(is_published=True)
+    news_cat_slug = request.GET.get('news_cat')
+    active_news_cat = None
+    if news_cat_slug:
+        active_news_cat = get_object_or_404(NewsCategory, slug=news_cat_slug)
+        news_qs = news_qs.filter(category=active_news_cat)
+
+    featured = news_qs.filter(is_featured=True).first()
+    news_list = news_qs.exclude(pk=featured.pk if featured else 0)
+
+    gallery_qs = GalleryItem.objects.filter(is_published=True)
+    gallery_cat_slug = request.GET.get('gallery_cat')
+    active_gallery_cat = None
+    if gallery_cat_slug:
+        active_gallery_cat = get_object_or_404(GalleryCategory, slug=gallery_cat_slug)
+        gallery_qs = gallery_qs.filter(category=active_gallery_cat)
+
+    return render(request, 'core/media_hub.html', {
+        'view_mode': view_mode,
+        'news_categories': news_categories,
+        'gallery_categories': gallery_categories,
+        'active_news_cat': active_news_cat,
+        'active_gallery_cat': active_gallery_cat,
+        'featured': featured,
+        'news_list': news_list,
+        'gallery_items': gallery_qs,
+    })
+
+
 def news_list(request):
     category_slug = request.GET.get('cat')
     categories    = NewsCategory.objects.all()

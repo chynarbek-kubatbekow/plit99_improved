@@ -1,7 +1,14 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.utils.text import slugify
 import uuid
+
+from .media_utils import (
+    gallery_image_upload_to,
+    news_cover_upload_to,
+    optimize_uploaded_image,
+)
 
 
 class NewsCategory(models.Model):
@@ -23,7 +30,12 @@ class News(models.Model):
     slug         = models.SlugField('Slug', unique=True, blank=True, max_length=320)
     excerpt      = models.TextField('Краткое описание', max_length=400)
     content      = models.TextField('Полный текст')
-    cover_image  = models.ImageField('Обложка', upload_to='news/covers/', blank=True, null=True)
+    cover_image  = models.ImageField(
+        'Обложка',
+        upload_to=news_cover_upload_to,
+        blank=True,
+        null=True,
+    )
     cover_emoji  = models.CharField('Эмодзи обложки', max_length=10, default='📰')
     cover_gradient = models.CharField(
         'Градиент обложки', max_length=120,
@@ -48,6 +60,10 @@ class News(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        optimized_cover = optimize_uploaded_image(self.cover_image)
+        if optimized_cover is not None:
+            self.cover_image = optimized_cover
+
         if not self.slug:
             base = slugify(self.title, allow_unicode=False)
             self.slug = base if base else str(uuid.uuid4())[:8]
@@ -77,7 +93,12 @@ class GalleryItem(models.Model):
 
     title      = models.CharField('Подпись', max_length=200, blank=True)
     media_type = models.CharField('Тип', max_length=10, choices=MEDIA_CHOICES, default='photo')
-    image      = models.ImageField('Фото', upload_to='gallery/', blank=True, null=True)
+    image      = models.ImageField(
+        'Фото',
+        upload_to=gallery_image_upload_to,
+        blank=True,
+        null=True,
+    )
     video_url  = models.URLField('Ссылка на видео', blank=True)
     category   = models.ForeignKey(
         GalleryCategory, on_delete=models.SET_NULL,
@@ -94,3 +115,24 @@ class GalleryItem(models.Model):
 
     def __str__(self):
         return self.title or f'Медиа #{self.pk}'
+
+    def clean(self):
+        super().clean()
+
+        if self.media_type == 'photo':
+            if not self.image:
+                raise ValidationError({'image': 'Для фото нужно загрузить изображение.'})
+            self.video_url = ''
+
+        if self.media_type == 'video':
+            if not self.video_url:
+                raise ValidationError({'video_url': 'Для видео нужно указать ссылку.'})
+            self.image = None
+
+    def save(self, *args, **kwargs):
+        optimized_image = optimize_uploaded_image(self.image)
+        if optimized_image is not None:
+            self.image = optimized_image
+
+        self.full_clean()
+        super().save(*args, **kwargs)

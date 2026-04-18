@@ -19,7 +19,5 @@ def main():
 
 # py manage.py runserver
 
-
-
 if __name__ == '__main__':
     main()

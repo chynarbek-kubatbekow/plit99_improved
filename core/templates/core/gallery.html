@@ -27,7 +27,7 @@
       {% for item in items %}
         {% if item.media_type == 'photo' and item.image %}
           <div class="gallery-item section-panel" style="padding:0">
-            <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" style="width:100%;display:block">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" decoding="async" style="width:100%;display:block">
             {% if item.title %}<div style="padding:.75rem 1rem;font-size:.82rem;color:var(--gray-600)">{{ item.title }}</div>{% endif %}
           </div>
         {% elif item.media_type == 'video' and item.video_url %}

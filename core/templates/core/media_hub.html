@@ -1,0 +1,156 @@
+{% extends 'core/base.html' %}
+{% load static news_media %}
+{% block title %}Новости&Галерея{% endblock %}
+{% block nav_media %}active{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197511/pexels-photo-8197511.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+  <div class="container page-hero-inner">
+    <div class="page-hero-eyebrow"><span class="badge badge-white">Новости&Галерея</span></div>
+    <h1 class="display-lg page-hero-title">Жизнь лицея в одном разделе</h1>
+    <p class="lead page-hero-subtitle">Здесь собраны новости, события, фото и видео. Выберите, как удобнее смотреть материалы.</p>
+  </div>
+</section>
+
+<section class="section section-sm">
+  <div class="container">
+    <div class="media-view-switch" data-aos>
+      <div class="section-eyebrow"><span class="label">Выбор раздела</span></div>
+      <div class="media-view-switch-row">
+        <h2 class="section-panel-title media-view-switch-title">Что посмотреть</h2>
+        <div class="gallery-tabs media-view-switch-tabs">
+          <a href="{% url 'media_hub' %}?view=all{% if active_news_cat %}&news_cat={{ active_news_cat.slug }}{% endif %}{% if active_gallery_cat %}&gallery_cat={{ active_gallery_cat.slug }}{% endif %}" class="gallery-tab {% if view_mode == 'all' %}active{% endif %}">Всё</a>
+          <a href="{% url 'media_hub' %}?view=news{% if active_news_cat %}&news_cat={{ active_news_cat.slug }}{% endif %}" class="gallery-tab {% if view_mode == 'news' %}active{% endif %}">Новости</a>
+          <a href="{% url 'media_hub' %}?view=gallery{% if active_gallery_cat %}&gallery_cat={{ active_gallery_cat.slug }}{% endif %}" class="gallery-tab {% if view_mode == 'gallery' %}active{% endif %}">Галерея</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if view_mode != 'gallery' %}
+<section class="section {% if view_mode == 'all' %}section-offwhite{% endif %}">
+  <div class="container">
+    <div class="media-hub-head">
+      <div>
+        <div class="section-eyebrow"><span class="label">Новости</span></div>
+        <h2 class="h1">События и материалы лицея</h2>
+      </div>
+      {% if news_categories %}
+      <div class="gallery-tabs media-hub-tabs">
+        <a href="{% url 'media_hub' %}?view={{ view_mode }}{% if active_gallery_cat %}&gallery_cat={{ active_gallery_cat.slug }}{% endif %}" class="gallery-tab {% if not active_news_cat %}active{% endif %}">Все новости</a>
+        {% for cat in news_categories %}
+        <a href="{% url 'media_hub' %}?view={{ view_mode }}&news_cat={{ cat.slug }}{% if active_gallery_cat %}&gallery_cat={{ active_gallery_cat.slug }}{% endif %}" class="gallery-tab {% if active_news_cat and active_news_cat.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    {% if featured %}
+    <div class="section-panel media-featured-panel" data-aos>
+      <a href="{{ featured.get_absolute_url }}" style="text-decoration:none">
+        <div class="news-featured-card">
+          {% if featured|news_static_cover %}
+            <img src="{{ featured|news_static_cover }}" alt="{{ featured.title }}" decoding="async" fetchpriority="high" style="height:100%;min-height:320px;object-fit:cover;width:100%">
+          {% else %}
+            <div class="news-img-placeholder" style="min-height:320px;background:{{ featured.cover_gradient }}">
+              <svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></svg>
+            </div>
+          {% endif %}
+          <div class="media-featured-copy">
+            <div style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap">
+              <span class="badge badge-gold">Главное</span>
+              {% if featured.category %}<span class="badge badge-ocean">{{ featured.category.name }}</span>{% endif %}
+            </div>
+            <div class="news-date">{{ featured.published_at|date:"d E Y" }}</div>
+            <div class="news-title" style="font-size:clamp(1.1rem,3vw,1.5rem);margin:.55rem 0 .9rem">{{ featured.title }}</div>
+            <div class="news-excerpt">{{ featured.excerpt }}</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+
+    <div class="masonry-news">
+      {% for item in news_list %}
+      <a href="{{ item.get_absolute_url }}" style="text-decoration:none" data-aos data-delay="{{ forloop.counter0 }}00">
+        <div class="news-card">
+          {% if item|news_static_cover %}
+            <img src="{{ item|news_static_cover }}" alt="{{ item.title }}" class="news-img" loading="lazy" decoding="async">
+          {% else %}
+            <div class="news-img-placeholder" style="height:200px;background:{{ item.cover_gradient }}">
+              <svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M7 8h10M7 12h10M7 16h6"></path></svg>
+            </div>
+          {% endif %}
+          <div class="news-body">
+            {% if item.category %}<span class="badge {{ item.category.color }}" style="margin-bottom:.5rem;display:inline-flex">{{ item.category.name }}</span>{% endif %}
+            <div class="news-date">{{ item.published_at|date:"d E Y" }}</div>
+            <div class="news-title">{{ item.title }}</div>
+            <div class="news-excerpt">{{ item.excerpt|truncatechars:150 }}</div>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      {% if not featured %}
+      <div class="section-panel" style="text-align:center;color:var(--gray-400)">
+        <div style="margin-bottom:1rem;display:flex;justify-content:center"><svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--warm-400)"><path d="M4 7h16v10H4z"></path><path d="m4 8 8 6 8-6"></path></svg></div>
+        <div>Новости скоро появятся</div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if view_mode != 'news' %}
+<section class="section">
+  <div class="container">
+    <div class="media-hub-head">
+      <div>
+        <div class="section-eyebrow"><span class="label">Галерея</span></div>
+        <h2 class="h1">Фото и видео из жизни лицея</h2>
+      </div>
+      {% if gallery_categories %}
+      <div class="gallery-tabs media-hub-tabs">
+        <a href="{% url 'media_hub' %}?view={{ view_mode }}{% if active_news_cat %}&news_cat={{ active_news_cat.slug }}{% endif %}" class="gallery-tab {% if not active_gallery_cat %}active{% endif %}">Все материалы</a>
+        {% for cat in gallery_categories %}
+        <a href="{% url 'media_hub' %}?view={{ view_mode }}&gallery_cat={{ cat.slug }}{% if active_news_cat %}&news_cat={{ active_news_cat.slug }}{% endif %}" class="gallery-tab {% if active_gallery_cat and active_gallery_cat.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="gallery-grid" data-aos>
+      {% for item in gallery_items %}
+        {% if item.media_type == 'photo' and item.image %}
+          <div class="gallery-item section-panel" style="padding:0">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" decoding="async" style="width:100%;display:block">
+            {% if item.title %}<div style="padding:.75rem 1rem;font-size:.82rem;color:var(--gray-600)">{{ item.title }}</div>{% endif %}
+          </div>
+        {% elif item.media_type == 'video' and item.video_url %}
+          <div class="gallery-item section-panel" style="padding:0">
+            <div style="position:relative;padding-bottom:56.25%;background:var(--ocean-900)">
+              <iframe src="{{ item.video_url }}" style="position:absolute;inset:0;width:100%;height:100%;border:none" allowfullscreen loading="lazy"></iframe>
+            </div>
+            {% if item.title %}<div style="padding:.75rem 1rem;font-size:.82rem;color:var(--gray-600)">{{ item.title }}</div>{% endif %}
+          </div>
+        {% endif %}
+      {% empty %}
+      <div class="section-panel" style="grid-column:1/-1;text-align:center;color:var(--gray-400)">
+        <div style="margin-bottom:1rem;display:flex;justify-content:center"><svg class="news-placeholder-icon" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--warm-400)"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="1.5"></circle><path d="m21 16-5-5L5 22"></path></svg></div>
+        <div>Материалы галлереи скоро появятся</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="media-callout media-hub-callout" data-aos>
+      <div class="section-mini-title">Дополнительно</div>
+      <div class="soft-card-title">Больше фото и видео в Instagram</div>
+      <div class="soft-card-text">Если хотите быстрее почувствовать ритм лицея, удобнее всего смотреть фото и короткие видео из повседневной жизни и мероприятий.</div>
+      <a href="https://instagram.com/99litsey" target="_blank" rel="noopener" class="btn btn-primary" style="width:max-content">@99litsey →</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

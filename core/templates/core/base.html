@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>{% block title %}ПЛИТ №99{% endblock %} — Профессиональный лицей IT при Президенте КР</title>
-  <meta name="description" content="{% block meta_desc %}Профессиональный лицей информационных технологий №99 при Президенте КР. Бесплатное IT-образование в Бишкеке с 1971 года.{% endblock %}">
+  <title>{% block title %}ПЛИТ №99{% endblock %} — Профессиональный лицей ИТ при Президенте КР</title>
+  <meta name="description" content="{% block meta_desc %}Профессиональный лицей информационных технологий №99 при Президенте КР. Бесплатное ИТ-образование в Бишкеке с 1971 года.{% endblock %}">
   <meta name="theme-color" content="#0A2540">
   <link rel="icon" type="image/png" href="{% static 'img/favicon-plit99.png' %}">
   <link rel="apple-touch-icon" href="{% static 'img/favicon-plit99.png' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Golos+Text:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260418-modal-fix">
   {% block extra_css %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -38,8 +38,7 @@
         <a href="{% url 'education' %}"  class="nav-link {% block nav_edu %}{% endblock %}">Обучение/Направления</a>
         <a href="{% url 'results' %}"    class="nav-link {% block nav_res %}{% endblock %}">Возможности</a>
         <a href="{% url 'admission' %}"  class="nav-link {% block nav_adm %}{% endblock %}">Поступление</a>
-        <a href="{% url 'news' %}"       class="nav-link {% block nav_news %}{% endblock %}">Новости</a>
-        <a href="{% url 'gallery' %}"    class="nav-link {% block nav_gal %}{% endblock %}">Галерея</a>
+        <a href="{% url 'media_hub' %}"  class="nav-link {% block nav_media %}{% endblock %}">Новости&Галерея</a>
         <a href="{% url 'contacts' %}"   class="nav-link {% block nav_con %}{% endblock %}">Контакты</a>
         <a href="{% url 'admission' %}" class="nav-cta-desktop">Поступить →</a>
       </div>
@@ -71,20 +70,16 @@
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
     Поступление
   </a>
-  <a href="{% url 'news' %}"      class="nav-link">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6z"/></svg>
-    Новости
-  </a>
-  <a href="{% url 'gallery' %}"   class="nav-link">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-    Галерея
+  <a href="{% url 'media_hub' %}"      class="nav-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"></rect><path d="M7 8h10"></path><rect x="3" y="13" width="8" height="8" rx="2"></rect><rect x="13" y="13" width="8" height="8" rx="2"></rect></svg>
+    Новости&Галерея
   </a>
   <a href="{% url 'contacts' %}"  class="nav-link">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
     Контакты
   </a>
   <div class="nav-mobile-divider"></div>
-  <a href="{% url 'admission' %}" class="nav-mobile-cta">Поступить в лицей →</a>
+  <a href="{% url 'admission' %}" class="nav-mobile-cta">Поступить →</a>
 </div>
 
 {% block content %}{% endblock %}
@@ -103,7 +98,7 @@
             <div class="footer-brand-sub">При Президенте КР</div>
           </div>
         </div>
-        <p class="footer-desc">Профессиональный лицей информационных технологий №99 — современное IT-образование в Бишкеке с 1971 года. Бесплатно, практично, с реальным выходом на международный рынок труда.</p>
+        <p class="footer-desc">Профессиональный лицей информационных технологий №99 — современное ИТ-образование в Бишкеке с 1971 года. Бесплатно, практично, с реальным выходом на международный рынок труда.</p>
         <div class="footer-contacts">
           <div class="footer-contact">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -157,7 +152,7 @@
   </div>
 </footer>
 
-<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}?v=20260418-modal-fix"></script>
 {% block extra_js %}{% endblock %}
 </body>
 </html>

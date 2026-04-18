@@ -1,4 +1,5 @@
 import os
+import secrets
 from pathlib import Path
 
 import dj_database_url
@@ -10,12 +11,29 @@ def env_bool(name, default=False):
     return os.getenv(name, str(default)).strip().lower() in {'1', 'true', 'yes', 'on'}
 
 
+def env_int(name, default=0):
+    raw_value = os.getenv(name, '').strip()
+    if raw_value:
+        return int(raw_value)
+    return int(default)
+
+
 def env_list(name, default=''):
     return [item.strip() for item in os.getenv(name, default).split(',') if item.strip()]
 
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-plit99-change-in-production-xyz123abc456')
+def env_path(name, default):
+    raw_value = os.getenv(name, '').strip()
+    if raw_value:
+        path = Path(raw_value)
+        return path if path.is_absolute() else (BASE_DIR / path).resolve()
+    return default
+
+
+SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_urlsafe(64))
 DEBUG = env_bool('DEBUG', True)
+DATA_DIR = env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', BASE_DIR))
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', '127.0.0.1,localhost')
 render_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME')
@@ -29,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -65,11 +83,18 @@ WSGI_APPLICATION = 'plit99_project.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        conn_health_checks=True,
+        default=f"sqlite:///{(DATA_DIR / 'db.sqlite3').as_posix()}",
     )
 }
+
+if DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
+    DATABASES['default']['CONN_MAX_AGE'] = 0
+    DATABASES['default']['OPTIONS'] = {
+        'timeout': 30,
+    }
+else:
+    DATABASES['default']['CONN_MAX_AGE'] = 600
+    DATABASES['default']['CONN_HEALTH_CHECKS'] = True
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -89,7 +114,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = DATA_DIR / 'media'
+MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
+SERVE_MEDIA_FILES = env_bool('SERVE_MEDIA_FILES', True)
 
 CSRF_TRUSTED_ORIGINS = env_list('CSRF_TRUSTED_ORIGINS')
 render_external_url = os.getenv('RENDER_EXTERNAL_URL')
@@ -102,5 +129,12 @@ USE_X_FORWARDED_HOST = True
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 SECURE_SSL_REDIRECT = env_bool('SECURE_SSL_REDIRECT', not DEBUG)
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_REFERRER_POLICY = os.getenv('SECURE_REFERRER_POLICY', 'same-origin')
+X_FRAME_OPTIONS = os.getenv('X_FRAME_OPTIONS', 'DENY')
+
+SECURE_HSTS_SECONDS = env_int('SECURE_HSTS_SECONDS', 0)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env_bool('SECURE_HSTS_INCLUDE_SUBDOMAINS', False)
+SECURE_HSTS_PRELOAD = env_bool('SECURE_HSTS_PRELOAD', False)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

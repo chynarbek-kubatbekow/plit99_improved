@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMobileNav();
+    if (e.key === 'Escape') {
+      closeMobileNav();
+    }
   });
 
   const revealObs = new IntersectionObserver(entries => {
@@ -111,6 +113,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
   scrollTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+  const directionModalTriggers = document.querySelectorAll('.dir-detail-trigger[data-modal-target]');
+  const directionModals = document.querySelectorAll('.dir-modal');
+  let activeDirectionModal = null;
+  let lastFocusedTrigger = null;
+
+  function closeDirectionModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    if (modal.__closeTimer) {
+      window.clearTimeout(modal.__closeTimer);
+    }
+    modal.__closeTimer = window.setTimeout(() => {
+      modal.hidden = true;
+      modal.__closeTimer = null;
+    }, 280);
+    if (activeDirectionModal === modal) {
+      document.body.style.overflow = '';
+      activeDirectionModal = null;
+    }
+  }
+
+  function openDirectionModal(modal, trigger) {
+    if (!modal) return;
+    if (activeDirectionModal && activeDirectionModal !== modal) {
+      closeDirectionModal(activeDirectionModal);
+    }
+    if (modal.__closeTimer) {
+      window.clearTimeout(modal.__closeTimer);
+      modal.__closeTimer = null;
+    }
+    lastFocusedTrigger = trigger || document.activeElement;
+    modal.hidden = false;
+    modal.scrollTop = 0;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    activeDirectionModal = modal;
+    const closeButton = modal.querySelector('.dir-modal-close');
+    window.requestAnimationFrame(() => closeButton?.focus());
+  }
+
+  directionModalTriggers.forEach(trigger => {
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    const targetId = trigger.dataset.modalTarget;
+    const modal = targetId ? document.getElementById(targetId) : null;
+    if (!modal) return;
+    trigger.setAttribute('aria-controls', modal.id);
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      openDirectionModal(modal, trigger);
+    });
+  });
+
+  directionModals.forEach(modal => {
+    modal.querySelector('.dir-modal-backdrop')?.addEventListener('click', e => {
+      e.preventDefault();
+      closeDirectionModal(modal);
+      lastFocusedTrigger?.focus();
+    });
+
+    modal.querySelector('.dir-modal-close')?.addEventListener('click', e => {
+      e.preventDefault();
+      closeDirectionModal(modal);
+      lastFocusedTrigger?.focus();
+    });
+  });
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -159,17 +229,11 @@ document.addEventListener('DOMContentLoaded', () => {
     requestParallax();
   }
 
-  if (window.matchMedia('(hover:hover) and (min-width:900px)').matches) {
-    document.querySelectorAll('.adv-card, .dir-card, .parent-card, .premium-overview-card, .achievement-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 4;
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 4;
-        card.style.transform = `perspective(700px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-5px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-  }
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && activeDirectionModal) {
+      closeDirectionModal(activeDirectionModal);
+      lastFocusedTrigger?.focus();
+    }
+  });
+
 });

@@ -1,14 +1,17 @@
-{% extends 'core/base.html' %}
+﻿{% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Обучение{% endblock %}
 {% block nav_edu %}active{% endblock %}
 {% block content %}
 
 <section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8199133/pexels-photo-8199133.jpeg?auto=compress&cs=tinysrgb&w=1600')">
-  <div class="container page-hero-inner">
+  <div class="container page-hero-inner education-hero-inner">
     <div class="page-hero-eyebrow"><span class="badge badge-white">Обучение</span></div>
-    <h1 class="display-lg page-hero-title">Образование, где теория сразу превращается в практику</h1>
-    <p class="lead page-hero-subtitle">Практика, среда, направления и всё, что важно знать абитуриенту о формате обучения.</p>
+    <h1 class="display-lg page-hero-title education-hero-title">
+      <span>Образование, где теория сразу</span>
+      <span>превращается в практику</span>
+    </h1>
+    <p class="lead page-hero-subtitle">Как устроено обучение, какие направления доступны и что получает студент.</p>
   </div>
 </section>
 
@@ -18,13 +21,13 @@
       <div class="page-summary-card">
         <div class="section-eyebrow"><span class="label">Подход</span></div>
         <h2 class="section-panel-title">Практика с первых этапов обучения</h2>
-        <p class="section-panel-text">Учёба строится вокруг проекта, прикладных навыков и результата, который можно показать в портфолио.</p>
+        <p class="section-panel-text">Одно из главных преимуществ обучения здесь — вы получаете среднее профессиональное образование. Студенты работают над реальными проектами, которые входят в портфолио, поэтому к выпуску у них уже есть конкретные работы и практический опыт.</p>
       </div>
       <div class="page-summary-card dark">
         <div class="summary-list">
           <div class="summary-list-item"><span class="icon-chip">11</span><div><div class="summary-list-title" style="color:#fff">11 направлений</div><div class="summary-list-text">От web до робототехники</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip">5</span><div><div class="summary-list-title" style="color:#fff">5 языков</div><div class="summary-list-text">Часть общей образовательной среды</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip">ORT</span><div><div class="summary-list-title" style="color:#fff">Подготовка к ОРТ</div><div class="summary-list-text">Академическая база не выпадает из фокуса</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip">5</span><div><div class="summary-list-title" style="color:#fff">5 языков бесплатно</div><div class="summary-list-text">Бесплатные курсы внутри лицея по желанию</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip">ОРТ</span><div><div class="summary-list-title" style="color:#fff">Подготовка к ОРТ</div><div class="summary-list-text">Академическая база не выпадает из фокуса</div></div></div>
         </div>
       </div>
     </div>
@@ -39,25 +42,25 @@
         <h2 class="section-panel-title">Что делает модель обучения сильной</h2>
         <div class="summary-list">
           <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg></span><div><div class="summary-list-title">Школьная программа идёт параллельно</div><div class="summary-list-text">Для поступающих после 9 класса общеобразовательная часть сочетается с профессиональной подготовкой.</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M14.7 6.3 17.7 9.3"></path><path d="M3 21l3.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10z"></path></svg></span><div><div class="summary-list-title">Производственное обучение</div><div class="summary-list-text">Практика начинается рано, поэтому выпускник выходит не только с дипломом, но и с опытом работы над задачами.</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18"></path><path d="M12 3a15 15 0 0 0 0 18"></path></svg></span><div><div class="summary-list-title">Международная компонента</div><div class="summary-list-text">Зарубежные мастера, партнёры и языки расширяют академический и карьерный горизонт.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M14.7 6.3 17.7 9.3"></path><path d="M3 21l3.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10z"></path></svg></span><div><div class="summary-list-title">Производственное обучение</div><div class="summary-list-text">Практика начинается с первых этапов, поэтому к выпуску студенты уже получают реальный опыт работы над задачами.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18"></path><path d="M12 3a15 15 0 0 0 0 18"></path></svg></span><div><div class="summary-list-title">Международная среда</div><div class="summary-list-text">Партнёры, языки и международные связи расширяют возможности для учёбы и будущей профессии.</div></div></div>
         </div>
       </div>
       <div class="section-panel dark">
         <div class="section-eyebrow"><span class="label" style="color:rgba(255,255,255,.7)">Среда</span></div>
         <h2 class="section-panel-title">Что поддерживает студента каждый день</h2>
         <div class="summary-list">
-          <div class="summary-list-item"><span class="icon-chip">EN+</span><div><div class="summary-list-title" style="color:#fff">Языки</div><div class="summary-list-text">Английский, китайский, корейский, японский и немецкий — часть общей модели развития.</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip">MEAL</span><div><div class="summary-list-title" style="color:#fff">Питание</div><div class="summary-list-text">Бесплатное горячее питание упрощает повседневный учебный ритм.</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip">CLUB</span><div><div class="summary-list-title" style="color:#fff">Кружки и секции</div><div class="summary-list-text">Внеаудиторная жизнь помогает держать баланс и мотивацию.</div></div></div>
-          <div class="summary-list-item"><span class="icon-chip">HACK</span><div><div class="summary-list-title" style="color:#fff">Хакатоны и проекты</div><div class="summary-list-text">Соревнования и проектные форматы превращают обучение в видимый результат.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M12 21s7-4.35 7-10V5l-7-2-7 2v6c0 5.65 7 10 7 10Z"></path><path d="M9 10h6"></path><path d="M9 14h4"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Языки</div><div class="summary-list-text">Английский, китайский, корейский, японский и немецкий доступны как бесплатные курсы внутри лицея по желанию.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M4 10h16"></path><path d="M6 6h12l1 4H5z"></path><path d="M7 14h10l-1 5H8z"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Питание</div><div class="summary-list-text">Бесплатное горячее питание упрощает повседневный учебный ритм.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4 9h16"></path><path d="M4 15h16"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Кружки и секции</div><div class="summary-list-text">Есть спортивные кружки: баскетбол, футбол, волейбол, а также музыка, карате и другие кружки.</div></div></div>
+          <div class="summary-list-item"><span class="icon-chip"><svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"></path><path d="M5 11.5V16c0 1.6 3.1 3 7 3s7-1.4 7-3v-4.5"></path></svg></span><div><div class="summary-list-title" style="color:#fff">Хакатоны и реальные проекты</div><div class="summary-list-text">Студенты работают над реальными проектами, которые входят в портфолио и показывают их уровень подготовки уже во время учёбы.</div></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section education-directions-wide">
+<section class="section education-directions-wide" id="directions-section">
   <div class="container">
     <div class="section-header centered">
       <div class="section-eyebrow"><span class="label">Направления</span></div>
@@ -68,14 +71,14 @@
       <div>
         <div class="dir-group">
           <div class="dir-group-head">
-            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><span class="icon-chip" style="width:48px;height:48px;font-weight:800">WEB</span><h3 class="h2">Сайты, приложения и программирование</h3></div>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><span class="icon-chip" style="width:48px;height:48px;font-weight:800">ВЕБ</span><h3 class="h2">Сайты, приложения и программирование</h3></div>
             <div class="dir-visual-strip" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
           <div class="dir-full-grid">
-            <div class="dir-full-card"><div class="dir-full-icon">WEB</div><div class="dir-full-title">Frontend - Создание внешнего вида сайта</div><div class="dir-full-desc">Здесь учат делать страницы, кнопки, меню, формы и весь тот экран, который человек видит первым. Это направление подойдёт тем, кому нравится сочетание логики, аккуратной структуры и визуальной подачи.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">SRV</div><div class="dir-full-title">Backend - Серверная часть и работа с данными</div><div class="dir-full-desc">Здесь объясняют, как сайт или приложение работает внутри: где хранятся данные, как всё связывается между собой, почему система не ломается и как она отвечает на действия пользователя.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">ALL</div><div class="dir-full-title">Fullstack - Полная разработка от начала до конца</div><div class="dir-full-desc">Направление для тех, кто хочет понимать весь продукт целиком: и внешний вид, и внутреннюю логику, и запуск готового сервиса. По сути, это путь для будущего универсального разработчика.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">APP</div><div class="dir-full-title">Mobile - Мобильные приложения</div><div class="dir-full-desc">Здесь учат делать программы для телефона и планшета: от экранов и переходов до логики работы и публикации готового приложения. Хороший выбор для тех, кто хочет создавать полезные цифровые сервисы для повседневной жизни.</div></div>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-frontend"><div class="dir-full-icon">ВЕБ</div><div class="dir-full-title">Фронтенд - Создание внешнего вида сайта</div><div class="dir-full-subtitle">Frontend / Web Developer</div><div class="dir-full-desc">Студенты учатся собирать современные интерфейсы для сайтов и сервисов. Направление подойдёт тем, кому нравятся визуальная логика, аккуратная вёрстка и удобство для пользователя.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-backend"><div class="dir-full-icon">СЕРВ</div><div class="dir-full-title">Бэкенд - Серверная часть и работа с данными</div><div class="dir-full-subtitle">Backend / Server Developer</div><div class="dir-full-desc">Студенты изучают серверную логику, базы данных и API, чтобы понимать внутреннее устройство цифрового продукта. Это направление для тех, кому ближе структура, данные и надёжная работа сервиса.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-fullstack"><div class="dir-full-icon">ВСЁ</div><div class="dir-full-title">Полный цикл - Разработка от начала до конца</div><div class="dir-full-subtitle">Full-Stack / Web Developer</div><div class="dir-full-desc">Студенты разбираются и во внешней части продукта, и во внутренней логике сервиса. Направление подойдёт тем, кто хочет видеть всю картину целиком и собирать проекты полностью.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-mobile"><div class="dir-full-icon">ПРИЛ</div><div class="dir-full-title">Мобильная разработка - Приложения для телефона и планшета</div><div class="dir-full-subtitle">Mobile App Developer</div><div class="dir-full-desc">Студенты создают мобильные приложения с экранами, переходами и рабочей логикой. Направление подойдёт тем, кто хочет делать удобные цифровые продукты для повседневной жизни.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
           </div>
         </div>
 
@@ -85,31 +88,31 @@
             <div class="dir-visual-strip" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
           <div class="dir-full-grid">
-            <div class="dir-full-card"><div class="dir-full-icon">ROB</div><div class="dir-full-title">Robotics - Роботы, датчики и умные устройства</div><div class="dir-full-desc">Это направление про технику, которая двигается, измеряет, реагирует и выполняет команды. Студенты знакомятся с электроникой, механизмами, датчиками и учатся собирать рабочие устройства, а не только читать о них в теории.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">CAR</div><div class="dir-full-title">Auto Electronics - Электрика и электроника автомобиля</div><div class="dir-full-desc">Здесь готовят к работе с современными автомобилями: проводкой, электронными блоками, системами управления и диагностикой. Подойдёт тем, кому интересно разбираться в устройстве машины и её технической части.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">NET</div><div class="dir-full-title">SysAdmin - Сети, серверы и техническая поддержка</div><div class="dir-full-desc">Направление о том, как настраивать компьютеры, локальные сети, серверы и рабочую среду компании. Простыми словами: это специалисты, которые делают так, чтобы техника и цифровая инфраструктура работали стабильно каждый день.</div></div>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-robotics"><div class="dir-full-icon">РОБ</div><div class="dir-full-title">Робототехника - Роботы, датчики и умные устройства</div><div class="dir-full-subtitle">Robotics Engineer</div><div class="dir-full-desc">Студенты изучают электронику, датчики и механику, а затем собирают рабочие устройства. Направление подойдёт тем, кому интересно соединять код, железо и реальные эксперименты.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-autoelectronics"><div class="dir-full-icon">АВТО</div><div class="dir-full-title">Автоэлектроника - Электрика и электроника автомобиля</div><div class="dir-full-subtitle">Automotive Electronics</div><div class="dir-full-desc">Студенты разбираются в проводке, электронных блоках и диагностике современных автомобилей. Направление подойдёт тем, кому интересны техника, схемы и практическая работа с машиной.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-sysadmin"><div class="dir-full-icon">СЕТЬ</div><div class="dir-full-title">Системное администрирование - Сети, серверы и техническая поддержка</div><div class="dir-full-subtitle">System Administrator / Network Engineer</div><div class="dir-full-desc">Студенты учатся настраивать компьютеры, сети и серверную инфраструктуру для стабильной работы систем. Направление подойдёт тем, кто любит порядок, техподдержку и техническую надёжность.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
           </div>
         </div>
 
         <div class="dir-group">
           <div class="dir-group-head">
-            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><span class="icon-chip" style="width:48px;height:48px;font-weight:800">SEC</span><h3 class="h2">Защита данных и работа в цифровом бизнесе</h3></div>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><span class="icon-chip" style="width:48px;height:48px;font-weight:800">ЗАЩ</span><h3 class="h2">Защита данных и работа в цифровом бизнесе</h3></div>
             <div class="dir-visual-strip" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
           <div class="dir-full-grid">
-            <div class="dir-full-card"><div class="dir-full-icon">SAFE</div><div class="dir-full-title">Cybersecurity - Защита информации и цифровая безопасность</div><div class="dir-full-desc">Здесь учат понимать, как защищать данные, аккаунты, сайты, сети и внутренние системы компании. Это направление для тех, кому интересно предотвращать взломы, замечать уязвимости и делать цифровую среду безопасной.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">SHOP</div><div class="dir-full-title">E-commerce - Онлайн-торговля и продажи через интернет</div><div class="dir-full-desc">Направление объясняет, как работают интернет-магазины, онлайн-продажи, цифровая реклама, приём заказов и продвижение товара в сети. Простыми словами: это про то, как бизнес зарабатывает через интернет и как этим управлять.</div></div>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-cybersecurity"><div class="dir-full-icon">КИБЕР</div><div class="dir-full-title">Кибербезопасность - Защита информации и цифровая безопасность</div><div class="dir-full-subtitle">Cybersecurity Specialist</div><div class="dir-full-desc">Студенты учатся защищать сайты, сети, аккаунты и внутренние системы от уязвимостей. Направление подойдёт тем, кому интересны анализ рисков, защита данных и безопасная цифровая среда.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-ecommerce"><div class="dir-full-icon">ТОРГ</div><div class="dir-full-title">Онлайн-торговля - Продажи через интернет</div><div class="dir-full-subtitle">E-Commerce Manager</div><div class="dir-full-desc">Студенты изучают интернет-магазины, цифровые продажи, рекламу и путь клиента от каталога до заказа. Направление подойдёт тем, кому интересны бизнес, продвижение и онлайн-сервисы.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
           </div>
         </div>
 
         <div class="dir-group">
           <div class="dir-group-head">
-            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><span class="icon-chip" style="width:48px;height:48px;font-weight:800">ART</span><h3 class="h2">Дизайн, внешний вид и визуальная подача</h3></div>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><span class="icon-chip" style="width:48px;height:48px;font-weight:800">АРТ</span><h3 class="h2">Дизайн, внешний вид и визуальная подача</h3></div>
             <div class="dir-visual-strip" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
           <div class="dir-full-grid">
-            <div class="dir-full-card"><div class="dir-full-icon">DES</div><div class="dir-full-title">Design - Дизайн экранов, рекламы и цифровых материалов</div><div class="dir-full-desc">Здесь учат делать понятный и красивый внешний вид сайтов, приложений, баннеров, презентаций и других визуальных материалов. Если говорить совсем просто, это направление про то, как сделать продукт удобным, аккуратным и приятным для человека.</div></div>
-            <div class="dir-full-card"><div class="dir-full-icon">MOD</div><div class="dir-full-title">Fashion Design - Проектирование и моделирование одежды</div><div class="dir-full-desc">Это направление подойдёт тем, кому интересны форма, конструкция, материалы и создание одежды от идеи до готовой модели. Здесь сочетаются творчество, точность, работа с лекалами и понимание современной индустрии.</div></div>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-design"><div class="dir-full-icon">ДИЗ</div><div class="dir-full-title">Дизайн - Экраны, реклама и цифровые материалы</div><div class="dir-full-subtitle">Digital Designer / UI-UX</div><div class="dir-full-desc">Студенты создают интерфейсы, баннеры, презентации и другие визуальные материалы для цифровой среды. Направление подойдёт тем, кому близки композиция, стиль и удобство восприятия.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
+            <button type="button" class="dir-full-card dir-detail-trigger" data-modal-target="dir-modal-fashion"><div class="dir-full-icon">МОДА</div><div class="dir-full-title">Дизайн одежды - Проектирование и моделирование</div><div class="dir-full-subtitle">Fashion Designer</div><div class="dir-full-desc">Студенты изучают форму, материалы и конструкцию одежды, а затем создают собственные модели. Направление подойдёт тем, кому интересны творчество, точность и современная fashion-индустрия.</div><div class="dir-full-more">Подробнее -&gt;</div></button>
           </div>
         </div>
       </div>
@@ -117,15 +120,488 @@
   </div>
 </section>
 
+<div class="dir-modal" id="dir-modal-frontend" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-frontend">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Frontend Development</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-frontend">Фронтенд</h3>
+          <p class="dir-modal-lead">Фронтенд — это всё, что пользователь видит на экране: структура страницы, кнопки, формы, карточки, анимации, адаптация под телефон и общее ощущение удобства. Если объяснять совсем просто, фронтенд делает сайт не только красивым, но и понятным, быстрым и приятным в использовании.</p>
+        </div>
+        <div class="dir-modal-chip">UI / UX / Web</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">База веба и интерфейсов</div>
+          <div class="dir-modal-stage-copy">
+            <p>Студент учится собирать страницу так, чтобы она была понятной человеку и правильно читалась браузером. Здесь важно понять, как из текста, изображений, кнопок и блоков строится цельный интерфейс.</p>
+            <p>HTML задаёт структуру страницы, CSS отвечает за внешний вид и адаптацию, JavaScript добавляет поведение. Дополнительно разбираются Figma для макетов, Git для командной работы и accessibility, чтобы сайт был удобен разным пользователям.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Современный frontend и рабочий стек</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе студент переходит от простых страниц к полноценным интерфейсам с авторизацией, личным кабинетом, фильтрами и загрузкой данных с сервера. Фронтенд начинает выглядеть как часть реального продукта.</p>
+            <p>TypeScript помогает раньше находить ошибки, React учит собирать интерфейс из компонентов, Next.js даёт более удобную структуру проекта, а API и state management нужны для работы с данными на экране. Дополнительно изучаются тестирование, оптимизация и базовые дизайн-системы.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что умеет студент и какие проекты делает</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент понимает путь интерфейса от идеи и макета до готового экрана, который открывается в браузере и корректно работает на разных устройствах. Он умеет брать задачу, разбивать её на блоки, собирать страницы, подключать данные и доводить интерфейс до аккуратного, понятного состояния.</p>
+            <p>В портфолио могут входить лендинги, корпоративные сайты, панели управления, страницы сервисов, каталоги и интерфейсы с формами, фильтрами и пользовательскими сценариями. Это направление особенно подойдёт тем, кому нравится сочетание логики, визуальной культуры и внимания к удобству пользователя.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-backend" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-backend">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Backend Development</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-backend">Бэкенд</h3>
+          <p class="dir-modal-lead">Бэкенд — это внутренняя часть цифрового продукта, которую пользователь напрямую не видит, но именно она отвечает за хранение данных, правила работы сервиса, безопасность, личные кабинеты и всё, что происходит "под капотом". Если просто, бэкенд делает так, чтобы сайт или приложение не только выглядели хорошо, но и реально работали.</p>
+        </div>
+        <div class="dir-modal-chip">API / Data / Server</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Python, базы данных и логика сервиса</div>
+          <div class="dir-modal-stage-copy">
+            <p>На первом этапе студент понимает, как данные появляются, сохраняются и отдаются на сайт или в приложение. Он учится мыслить не страницами, а сущностями: пользователи, товары, заявки, роли и правила обработки данных.</p>
+            <p>Python используется для логики и веб-разработки, SQL — для работы с базой данных, Flask и Django — для построения серверной части. Также изучаются шаблоны, ORM, REST API и аутентификация, чтобы собрать первый рабочий сервис с регистрацией и хранением данных.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Надёжный backend и enterprise-подход</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе студент учится строить backend так, чтобы он был не только рабочим, но и устойчивым, понятным для команды и готовым к росту нагрузки. Здесь уже важны архитектура, безопасность и логирование.</p>
+            <p>Java Core и Spring Boot дают понимание более строгой серверной разработки, PostgreSQL используется как промышленная база данных, Docker помогает одинаково запускать проект у команды, а очереди и многослойная архитектура показывают, как строятся более серьёзные системы.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что умеет студент и где это применяется</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент может собрать серверную часть проекта с базой данных, ролями пользователей, авторизацией, API, админкой, обработкой заявок и защитой основных сценариев. Он умеет думать о данных, проверках, связях между сущностями и надёжности работы сервиса.</p>
+            <p>В портфолио могут быть CRM-системы, сервисы записи, панели управления, интернет-магазины, учебные платформы и внутренние корпоративные системы. Это направление подойдёт тем, кому интересны логика, структура, работа с данными и ощущение, что именно ты собираешь "двигатель" продукта.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-fullstack" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-fullstack">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Full-Stack Development</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-fullstack">Полный цикл</h3>
+          <p class="dir-modal-lead">Full-stack — это направление для тех, кто хочет видеть весь цифровой продукт целиком: и то, что пользователь видит на экране, и то, как внутри работают данные, авторизация, сервер и логика. Если коротко, full-stack разработчик умеет собирать проект от первого экрана до запуска готового сервиса.</p>
+        </div>
+        <div class="dir-modal-chip">End-to-End Product</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Фундамент веб-разработки с двух сторон</div>
+          <div class="dir-modal-stage-copy">
+            <p>Сначала студент получает базу сразу по двум частям: интерфейсу и серверной логике. Это помогает понять, как связаны экран, форма, данные, база и серверный ответ внутри одного продукта.</p>
+            <p>HTML, CSS и JavaScript отвечают за клиентскую часть, Python помогает начать писать серверную логику, Git нужен для ведения версий, а основы UX учат думать об удобстве пользователя. На практике появляются первые веб-проекты с формами, хранением данных и рабочими сценариями.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Сборка готовых сервисов и запуск продукта</div>
+          <div class="dir-modal-stage-copy">
+            <p>Дальше обучение переходит к полноценной сборке продукта: интерфейс получает данные через API, сервер обрабатывает запросы, база хранит информацию, а проект разворачивается так, чтобы его можно было показать как готовую работу.</p>
+            <p>React и Next.js помогают строить клиентскую часть, Django или Node-подходы отвечают за сервер, базы данных хранят пользователей и заявки, Docker упрощает запуск, а деплой и CI/CD знакомят с публикацией и обновлением проекта.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что умеет студент и почему это направление ценят</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент способен собрать сервис под ключ: продумать интерфейс, подключить формы, реализовать серверную логику, настроить базу данных, авторизацию, публикацию и базовую поддержку. Это направление особенно полезно тем, кто любит видеть полную картину и не хочет ограничиваться только одной частью продукта.</p>
+            <p>В портфолио могут быть учебные платформы, интернет-магазины, сервисы записи, панели управления и внутренние рабочие системы. Full-stack даёт сильную прикладную базу и помогает быстрее понять, кем именно хочется стать дальше: frontend-разработчиком, backend-разработчиком или универсальным специалистом, который умеет запускать целые продукты.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-mobile" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-mobile">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Mobile Application Development</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-mobile">Мобильная разработка</h3>
+          <p class="dir-modal-lead">Мобильная разработка — это создание приложений для телефона и планшета: экранов, переходов, личных кабинетов, уведомлений, хранения данных и общего пользовательского сценария. Если просто, студент учится делать продукт, который человек открывает каждый день у себя в смартфоне и которым реально пользуется.</p>
+        </div>
+        <div class="dir-modal-chip">iOS / Android</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Основа мобильных интерфейсов</div>
+          <div class="dir-modal-stage-copy">
+            <p>На первом этапе студент разбирается, чем мобильный интерфейс отличается от сайта: экран меньше, сценарий короче, а каждая кнопка и переход должны быть особенно понятными. Важно научиться мыслить пользовательским путём внутри приложения.</p>
+            <p>UI-паттерны помогают строить привычные экраны, Figma нужна для проектирования, Dart — язык для Flutter, а Flutter позволяет делать приложение сразу под Android и iOS. Дополнительно изучаются маршрутизация, формы, локальное хранение данных и управление состоянием.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Приложение под релиз и рабочие сервисы</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе студент собирает уже не просто экраны, а приложение, которое взаимодействует с внешними сервисами, хранит данные, отправляет уведомления и готовится к публикации. Здесь появляется ощущение настоящего релиза.</p>
+            <p>Firebase даёт облачные инструменты для хранения данных и авторизации, REST API нужен для связи с сервером, push-уведомления помогают работать с событиями, а аналитика и публикация сборок показывают, как приложение доводится до состояния готового продукта.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что делает студент на практике</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент может собрать мобильное приложение с авторизацией, несколькими экранами, формами, списками, взаимодействием с сервером и базовой аналитикой. Он понимает, как проектировать пользовательский путь внутри приложения и как сделать интерфейс удобным на маленьком экране.</p>
+            <p>В портфолио могут быть приложения для расписания, доставки, внутреннего сервиса, записи, обучения, каталога или личного кабинета. Это направление хорошо подходит тем, кому нравится идея делать полезный цифровой продукт, который человек носит с собой каждый день в телефоне.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-robotics" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-robotics">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Robotics Engineering</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-robotics">Робототехника</h3>
+          <p class="dir-modal-lead">Робототехника соединяет сразу несколько областей: код, электронику, механику, датчики, управление и работу устройств в реальной среде. Если объяснять просто, это направление про то, как заставить "железо" понимать команды, реагировать на мир вокруг и выполнять задачу не на экране, а вживую.</p>
+        </div>
+        <div class="dir-modal-chip">Hardware / Control</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Электроника, механика и управление</div>
+          <div class="dir-modal-stage-copy">
+            <p>Сначала студент понимает, из чего состоит устройство: питание, плата, датчики, исполнительные механизмы и логика их совместной работы. Это база, без которой робототехника превращается в набор деталей.</p>
+            <p>Arduino даёт первую платформу для проектов, C/C++ используются для управления микроконтроллерами, датчики считывают параметры среды, а моторы приводят систему в движение. Параллельно изучаются схемотехника, пайка и основы 3D-моделирования для первых прототипов.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Умные системы, связь и более сложные прототипы</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе проекты становятся сложнее: устройство уже не просто выполняет одну команду, а собирает данные, взаимодействует с сетью, камерой или несколькими модулями одновременно. Робототехника начинает выглядеть как полноценный инженерный продукт.</p>
+            <p>ESP32 и Raspberry Pi используются для более мощных решений, беспроводная связь помогает передавать данные без кабеля, computer vision знакомит с обработкой изображения, а маршруты и манипуляторы показывают, как система двигается и выполняет действия в реальной среде.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что получается к концу обучения</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент умеет собирать рабочие инженерные проекты: от датчиков и простых автоматизированных схем до прототипов роботов и умных устройств. Он понимает, как связаны код, электроника, механика и поведение системы в реальном мире.</p>
+            <p>В портфолио могут быть автоматизированные модели, учебные роботы, сенсорные системы, устройства мониторинга, элементы умного дома и технические прототипы. Это направление особенно подойдёт тем, кому нравится не только программирование, но и ощущение реального физического результата своей работы.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-autoelectronics" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-autoelectronics">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Automotive Electronics</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-autoelectronics">Автоэлектроника</h3>
+          <p class="dir-modal-lead">Автоэлектроника — это направление про электронные и электрические системы автомобиля: проводку, питание, датчики, блоки управления, диагностику и современные интеллектуальные узлы. Если просто, студент учится понимать, как автомобиль "думает", откуда берёт сигналы и почему та или иная система работает или выходит из строя.</p>
+        </div>
+        <div class="dir-modal-chip">Vehicle Tech</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Электрика автомобиля и базовая диагностика</div>
+          <div class="dir-modal-stage-copy">
+            <p>На первом этапе студент разбирается, как устроены цепи питания, как проходят сигналы и как безопасно работать с электрической частью автомобиля. Здесь особенно важны аккуратность, логика и умение читать схему.</p>
+            <p>Схемы помогают видеть связи между узлами, мультиметр нужен для проверки цепей, датчики передают состояние систем, а стартер, генератор и CAN-шина показывают, как автомобиль запускается и как электронные блоки обмениваются данными.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Современные электронные системы автомобиля</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе автомобиль рассматривается уже как электронная платформа с блоками управления, диагностическими протоколами и интеллектуальными системами. Студент учится видеть не отдельную деталь, а всю логику работы узлов.</p>
+            <p>ECU — это электронные блоки управления, сервисные программы нужны для глубокой диагностики, системы помощи водителю показывают современный уровень электроники, а зарядные модули и EV-системы дают базу по электрическим и гибридным платформам.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Какие навыки получает студент</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент умеет читать электрические схемы, работать с измерительными приборами, проводить базовую и более углублённую диагностику, понимать сигналы датчиков и логику блоков управления. Он видит автомобиль не как набор разрозненных деталей, а как связанную электронную систему.</p>
+            <p>В портфолио и практической базе могут быть диагностические кейсы, карты неисправностей, разбор реальных узлов и учебные проекты по автомобильной электронике. Это направление подойдёт тем, кому интересны техника, анализ причин, работа с системой и практический инженерный подход.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-sysadmin" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-sysadmin">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">System Administration and Network Infrastructure</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-sysadmin">Системное администрирование</h3>
+          <p class="dir-modal-lead">Системное администрирование — это направление про компьютеры, сети, серверы, доступы, инфраструктуру и бесперебойную работу всей технической среды. Если говорить просто, системный администратор отвечает за то, чтобы у людей всё работало: интернет, компьютеры, учётные записи, серверы, резервные копии и внутренняя сеть компании.</p>
+        </div>
+        <div class="dir-modal-chip">Networks / Servers</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Компьютеры, сети и повседневная инфраструктура</div>
+          <div class="dir-modal-stage-copy">
+            <p>Сначала студент получает техническую базу: как устроен компьютер, как работает операционная система, откуда берётся сеть и почему у пользователя может пропасть доступ к ресурсу. Это фундамент всей системной работы.</p>
+            <p>Windows и Linux дают понимание разных сред, TCP/IP объясняет сетевые правила, роутеры строят сеть, DHCP раздаёт параметры подключения, DNS переводит адреса, а резервное копирование защищает данные. На практике студент настраивает рабочие станции и локальные сети.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Серверная среда, безопасность и администрирование</div>
+          <div class="dir-modal-stage-copy">
+            <p>Дальше обучение переходит к более серьёзной инфраструктуре: виртуальным средам, доступам, серверным сервисам, журналам событий и базовой автоматизации. Здесь системный администратор уже отвечает не за один компьютер, а за целую техническую среду.</p>
+            <p>Virtualization показывает работу виртуальных машин, monitoring помогает следить за состоянием сервисов, shell scripting автоматизирует повторяющиеся задачи, Active Directory управляет доступами, а Docker basics, VPN и hardening дают базу по современной серверной и защищённой среде.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что умеет студент после обучения</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент умеет настраивать рабочие станции, поддерживать локальные сети, управлять доступами, работать с базовыми серверными задачами, резервным копированием, удалённым доступом и диагностикой инфраструктуры. Он понимает, как устроена повседневная техническая жизнь организации.</p>
+            <p>В практической базе могут быть кейсы по настройке сетей, серверов, учётных записей, политик безопасности, резервного копирования и сопровождению рабочих мест. Это направление подойдёт тем, кому нравится порядок, системность, техническая надёжность и работа с реальной IT-средой.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-cybersecurity" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-cybersecurity">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Cybersecurity and Information Assurance</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-cybersecurity">Кибербезопасность</h3>
+          <p class="dir-modal-lead">Кибербезопасность — это направление про защиту данных, сетей, аккаунтов, сайтов, приложений и внутренней инфраструктуры. Если объяснять просто, студент учится замечать, где система уязвима, как её можно усилить и что нужно сделать, чтобы снизить риск утечки, взлома или ошибки в защите.</p>
+        </div>
+        <div class="dir-modal-chip">Defense / Security</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Фундамент защиты и понимание рисков</div>
+          <div class="dir-modal-stage-copy">
+            <p>На первом этапе студент получает базу, без которой безопасность превращается в набор громких слов. Нужно понимать, как работают сеть, сервер, учётные записи, веб-приложение и сами данные, иначе защищать будет просто нечего.</p>
+            <p>Linux часто используется в security-среде, Python помогает автоматизировать проверки, модели угроз учат заранее видеть риски, а журналы событий показывают, что происходило внутри системы. Дополнительно разбираются базовые уязвимости веб-приложений через OWASP basics.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Практика защиты, анализа и реагирования</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе появляются прикладные сценарии: проверка конфигураций, анализ логов, поиск уязвимостей и учебная реакция на инциденты. Здесь теория начинает превращаться в реальные процессы защиты.</p>
+            <p>Pentest basics знакомит с учебной проверкой системы, hardening — с усилением настроек, SIEM-intro — со сбором и анализом событий безопасности, а incident response показывает порядок действий при подозрительной активности. Студент учится не ломать систему, а грамотно находить и объяснять риски.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что умеет студент и как это выглядит на практике</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент умеет смотреть на систему с точки зрения риска: где слабое место, где неверно выданы права, что видно по логам, какие настройки можно усилить и как описать проблему человеческим языком. Он понимает, что безопасность — это не магия, а последовательная инженерная работа.</p>
+            <p>В практической базе могут быть отчёты по конфигурациям, учебные сценарии анализа инцидентов, разбор типовых уязвимостей, усиление серверной среды и проверка веб-сервисов на базовые ошибки. Это направление подойдёт тем, кому интересны аналитика, защита, внимательность к деталям и работа с реальными рисками в цифровой среде.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-ecommerce" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-ecommerce">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">E-Commerce and Digital Sales</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-ecommerce">Онлайн-торговля</h3>
+          <p class="dir-modal-lead">Онлайн-торговля — это направление про запуск и развитие продаж через интернет: интернет-магазины, маркетплейсы, карточки товара, трафик, аналитику, воронку заказа и работу с клиентом после покупки. Если просто, студент учится делать так, чтобы товар или услуга находили своего покупателя в цифровой среде и доходили до реального заказа.</p>
+        </div>
+        <div class="dir-modal-chip">Sales / Growth</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Основа e-commerce и путь клиента</div>
+          <div class="dir-modal-stage-copy">
+            <p>На первом этапе студент понимает, что онлайн-продажа — это не просто публикация товара. Нужно оформить карточку, продумать контент, понять путь клиента и убрать барьеры, которые мешают покупке.</p>
+            <p>CRM помогает работать с клиентами и заявками, маркетплейсы показывают устройство крупных площадок, аналитика помогает видеть поведение аудитории, а Excel или Sheets нужны для учёта и расчётов. Студент учится смотреть на рекламу и воронку заказа как на систему.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Рост магазина и цифровой маркетинг</div>
+          <div class="dir-modal-stage-copy">
+            <p>Дальше обучение переходит к росту проекта: как привлекать людей, как возвращать покупателей и как считать, приносит ли магазин деньги, а не просто трафик. Онлайн-торговля здесь уже выглядит как связка бизнеса, контента, рекламы и аналитики.</p>
+            <p>Shopify и WooCommerce используются для интернет-магазинов, performance-маркетинг показывает, как измерять результат рекламы, SEO помогает поисковому трафику, а email-маркетинг, ретаргетинг и unit-экономика учат удержанию клиентов и расчёту эффективности.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Какие практические навыки получает студент</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент умеет собирать и поддерживать цифровую витрину, оформлять карточки товаров, работать с контентом, аналитикой, рекламой, клиентской базой и основными каналами роста. Он понимает, как устроен путь от товара и трафика до реального заказа и повторной покупки.</p>
+            <p>В практике и портфолио могут быть учебные интернет-магазины, карточки товаров, рекламные связки, аналитические таблицы, воронки продаж и кейсы по улучшению конверсии. Это направление особенно подойдёт тем, кому интересны цифровой бизнес, продвижение, аналитика и работа на стыке продукта и продаж.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-design" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-design">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Digital Design and UI/UX</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-design">Дизайн</h3>
+          <p class="dir-modal-lead">Цифровой дизайн — это направление про визуальную подачу, удобство, логику восприятия и то, как продукт выглядит в глазах пользователя. Если говорить просто, студент учится делать экраны, баннеры, презентации, рекламные материалы и интерфейсы, которые не только красиво смотрятся, но и помогают человеку быстро понять, что перед ним и что нужно сделать дальше.</p>
+        </div>
+        <div class="dir-modal-chip">Visual / Product</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">Визуальная база и графическая грамотность</div>
+          <div class="dir-modal-stage-copy">
+            <p>Сначала студент учится видеть композицию, ритм, цвет, иерархию и смысл изображения. Это база для любого визуального продукта: от баннера и поста до сложного интерфейса.</p>
+            <p>Композиция отвечает за расположение элементов, типографика — за работу со шрифтами, Figma используется для интерфейсов, Photoshop — для изображений, Illustrator — для векторной графики. На практике студент делает баннеры, презентации, посты и первые макеты интерфейсов.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">UI/UX, продуктовая логика и системный дизайн</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе дизайн становится ближе к цифровому продукту: важно уже не только красиво оформить экран, но и понять путь пользователя, структуру сценария и поведение интерфейса в разных состояниях.</p>
+            <p>UI отвечает за визуальную часть интерфейса, UX — за удобство пользовательского опыта, design system собирает единые компоненты, user flows помогают проектировать сценарии, а прототипирование и motion basics показывают, как продукт работает ещё до начала разработки.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что может показать студент в портфолио</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент способен собрать сильное визуальное портфолио: интерфейсы, презентации, баннерные серии, брендовые материалы, рекламные визуалы и продуктовые макеты. Он понимает, как работать не только "по вдохновению", но и по задаче, структуре и пользовательскому сценарию.</p>
+            <p>Это направление подойдёт тем, кому близки визуальная культура, внимание к деталям, работа со смыслом и интерес к современным цифровым продуктам. Особенно хорошо оно раскрывается у тех, кто любит наблюдать, сравнивать, улучшать и делать сложные вещи простыми и понятными через визуальный язык.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dir-modal" id="dir-modal-fashion" aria-hidden="true" hidden>
+  <button type="button" class="dir-modal-backdrop" aria-label="Закрыть окно"></button>
+  <div class="dir-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title-fashion">
+    <button type="button" class="dir-modal-close" aria-label="Закрыть окно">×</button>
+    <div class="dir-modal-content">
+      <div class="dir-modal-top">
+        <div>
+          <div class="dir-modal-kicker">Fashion Design and Garment Construction</div>
+          <h3 class="dir-modal-title" id="dir-modal-title-fashion">Дизайн одежды</h3>
+          <p class="dir-modal-lead">Дизайн одежды — это направление про создание вещи от идеи до готовой модели: силуэт, ткань, конструкция, лекала, посадка, швейная обработка, стилистика и презентация коллекции. Если просто, студент учится не только придумывать образ, но и доводить его до реального изделия, которое можно надеть, показать и вывести как законченный продукт.</p>
+        </div>
+        <div class="dir-modal-chip">Fashion / Craft</div>
+      </div>
+      <div class="dir-modal-grid">
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">1 год</div>
+          <div class="dir-modal-stage-title">База формы, конструкции и материалов</div>
+          <div class="dir-modal-stage-copy">
+            <p>Сначала студент получает фундамент в рисунке, понимании формы, типах тканей, конструкции изделия и последовательности пошива. Важно не только придумать красивую вещь, но и понять, как она собирается и сидит на человеке.</p>
+            <p>Конструирование создаёт основу изделия, лекала дают выкройки деталей, ручная и машинная обработка учат разным способам сборки, а посадка показывает, насколько вещь соответствует задуманной форме. Параллельно студент знакомится с материалами и швейным оборудованием.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage">
+          <div class="dir-modal-stage-label">2 год</div>
+          <div class="dir-modal-stage-title">Коллекция, цифровые инструменты и индустрия</div>
+          <div class="dir-modal-stage-copy">
+            <p>На втором этапе обучение переходит к более цельному подходу: студент думает уже не об одной вещи, а о линейке изделий, стилистике, презентации и связи модели с образом бренда или коллекции.</p>
+            <p>CLO 3D помогает моделировать одежду в объёме до пошива, капсульная коллекция учит собирать связанную серию вещей, стилизация отвечает за цельный образ, а технологические карты и работа с брендом показывают, как идея превращается в профессиональный продукт.</p>
+          </div>
+        </div>
+        <div class="dir-modal-stage dir-modal-stage-wide">
+          <div class="dir-modal-stage-label">Результат</div>
+          <div class="dir-modal-stage-title">Что получает студент на выходе</div>
+          <div class="dir-modal-stage-copy">
+            <p>К концу обучения студент может пройти путь от эскиза и выбора материала до лекал, пошива, примерки, корректировки, стилизации и презентации готовой модели или мини-коллекции. Он понимает, как рождается изделие и какие этапы нельзя пропустить, чтобы вещь выглядела убедительно и качественно.</p>
+            <p>В портфолио могут быть авторские модели, капсульные коллекции, технические карты, визуальные концепции и презентации образов. Это направление особенно подойдёт тем, кому интересны форма, стиль, аккуратная ручная работа, креативность и желание воплощать идею в реальный материальный результат.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="section-sm">
   <div class="container">
     <div class="cta-block" data-aos>
       <div class="cta-block-inner">
-        <h2 class="h1 cta-title">Если направление уже понятно, следующий шаг — поступление</h2>
-        <p class="lead cta-text">Выберите направление и сразу переходите к условиям поступления.</p>
+        <h2 class="h1 cta-title">Выбрали направление — переходите к поступлению</h2>
+        <p class="lead cta-text">Посмотрите условия поступления и подготовьте документы заранее.</p>
         <div class="cta-actions">
-          <a href="{% url 'admission' %}" class="btn btn-gold btn-lg">Перейти к поступлению</a>
-          <a href="{% url 'results' %}" class="btn btn-ghost btn-lg">Что получает выпускник</a>
+          <a href="{% url 'admission' %}" class="btn btn-gold btn-lg">Поступить</a>
+          <a href="{% url 'results' %}" class="btn btn-ghost btn-lg">Узнать подробнее</a>
         </div>
       </div>
     </div>
@@ -133,3 +609,5 @@
 </section>
 
 {% endblock %}
+
+
