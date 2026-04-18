@@ -24,7 +24,3 @@ services:
         value: DELETE
       - key: SERVE_MEDIA_FILES
         value: true
-      - key: ALLOWED_HOSTS
-        value: "plit99-web.onrender.com"
-      - key: CSRF_TRUSTED_ORIGINS
-        value: "https://plit99-web.onrender.com"

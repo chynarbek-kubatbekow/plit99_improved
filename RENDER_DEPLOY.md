@@ -13,9 +13,7 @@
 
 1. Push the project to GitHub.
 2. In `render.yaml`, change `plit99-web` to your real Render service name if you want a different URL.
-3. If you change the service name, also update:
-   - `ALLOWED_HOSTS`
-   - `CSRF_TRUSTED_ORIGINS`
+3. You do not need to hardcode `ALLOWED_HOSTS` or `CSRF_TRUSTED_ORIGINS` for the default `onrender.com` domain. The Django settings pick up the Render hostname automatically.
 
 ## Recommended Setup On Render
 
@@ -58,6 +56,7 @@ For Render, nothing special needs to be "activated" inside Django:
 - the persistent disk is attached in `render.yaml`
 - `APP_DATA_DIR` points Django to that disk
 - `python manage.py migrate` creates the SQLite database there automatically on first deploy
+- `RENDER_EXTERNAL_HOSTNAME` and `RENDER_EXTERNAL_URL` are used automatically for `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`
 
 This project also applies SQLite-safe settings for Render:
 
