@@ -40,10 +40,13 @@ class NewsAdmin(admin.ModelAdmin):
 
     def cover_preview(self, obj):
         if obj.cover_image:
-            return format_html(
-                '<img src="{}" style="height:48px;border-radius:6px;object-fit:cover"/>',
-                obj.cover_image.url,
-            )
+            try:
+                return format_html(
+                    '<img src="{}" style="height:48px;border-radius:6px;object-fit:cover"/>',
+                    obj.cover_image.url,
+                )
+            except (OSError, ValueError):
+                pass
         return format_html('<span style="font-size:1.5rem">{}</span>', obj.cover_emoji)
 
     cover_preview.short_description = 'Превью'
@@ -75,10 +78,13 @@ class GalleryItemAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return format_html(
-                '<img src="{}" style="height:48px;width:72px;border-radius:6px;object-fit:cover"/>',
-                obj.image.url,
-            )
+            try:
+                return format_html(
+                    '<img src="{}" style="height:48px;width:72px;border-radius:6px;object-fit:cover"/>',
+                    obj.image.url,
+                )
+            except (OSError, ValueError):
+                pass
         if obj.video_url:
             return format_html('<span style="color:#1668C0">▶ Видео</span>')
         return '—'

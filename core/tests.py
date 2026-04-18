@@ -2,9 +2,11 @@ from io import BytesIO
 from pathlib import Path
 import shutil
 import uuid
+from unittest.mock import patch
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db import OperationalError
 from django.test import TestCase
 from PIL import Image
 
@@ -65,3 +67,19 @@ class NewsMediaTests(TestCase):
                 self.assertEqual(response['X-Content-Type-Options'], 'nosniff')
         finally:
             shutil.rmtree(media_root, ignore_errors=True)
+
+    def test_home_page_falls_back_when_database_is_unavailable(self):
+        with self.settings(SECURE_SSL_REDIRECT=False):
+            with patch('core.views.News.objects.filter', side_effect=OperationalError('db is down')):
+                response = self.client.get('/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'ПЛИТ')
+
+    def test_news_page_falls_back_when_database_is_unavailable(self):
+        with self.settings(SECURE_SSL_REDIRECT=False):
+            with patch('core.views.NewsCategory.objects.all', side_effect=OperationalError('db is down')):
+                response = self.client.get('/news/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Новости')
