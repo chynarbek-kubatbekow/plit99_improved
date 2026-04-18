@@ -22,11 +22,13 @@ def index(request):
     latest_news = []
     try:
         featured_news = News.objects.filter(is_published=True, is_featured=True).first()
-        latest_news = News.objects.filter(is_published=True).exclude(
+        latest_news = list(News.objects.filter(is_published=True).exclude(
             pk=featured_news.pk if featured_news else 0
-        )[:3]
+        )[:3])
     except DB_EXCEPTIONS:
         _log_database_unavailable('index')
+        featured_news = None
+        latest_news = []
 
     return render(request, 'core/index.html', {
         'featured_news': featured_news,
@@ -61,11 +63,11 @@ def media_hub(request):
     active_gallery_cat = None
     featured = None
     news_list = []
-    gallery_qs = []
+    gallery_items = []
 
     try:
-        news_categories = NewsCategory.objects.all()
-        gallery_categories = GalleryCategory.objects.all()
+        news_categories = list(NewsCategory.objects.all())
+        gallery_categories = list(GalleryCategory.objects.all())
 
         news_qs = News.objects.filter(is_published=True)
         news_cat_slug = request.GET.get('news_cat')
@@ -74,15 +76,23 @@ def media_hub(request):
             news_qs = news_qs.filter(category=active_news_cat)
 
         featured = news_qs.filter(is_featured=True).first()
-        news_list = news_qs.exclude(pk=featured.pk if featured else 0)
+        news_list = list(news_qs.exclude(pk=featured.pk if featured else 0))
 
         gallery_qs = GalleryItem.objects.filter(is_published=True)
         gallery_cat_slug = request.GET.get('gallery_cat')
         if gallery_cat_slug:
             active_gallery_cat = get_object_or_404(GalleryCategory, slug=gallery_cat_slug)
             gallery_qs = gallery_qs.filter(category=active_gallery_cat)
+        gallery_items = list(gallery_qs)
     except DB_EXCEPTIONS:
         _log_database_unavailable('media_hub')
+        news_categories = []
+        gallery_categories = []
+        active_news_cat = None
+        active_gallery_cat = None
+        featured = None
+        news_list = []
+        gallery_items = []
 
     return render(request, 'core/media_hub.html', {
         'view_mode': view_mode,
@@ -92,7 +102,7 @@ def media_hub(request):
         'active_gallery_cat': active_gallery_cat,
         'featured': featured,
         'news_list': news_list,
-        'gallery_items': gallery_qs,
+        'gallery_items': gallery_items,
     })
 
 
@@ -103,7 +113,7 @@ def news_list(request):
     active_cat = None
     featured = None
     try:
-        categories = NewsCategory.objects.all()
+        categories = list(NewsCategory.objects.all())
         news_qs = News.objects.filter(is_published=True)
 
         if category_slug:
@@ -111,9 +121,13 @@ def news_list(request):
             news_qs = news_qs.filter(category=active_cat)
 
         featured = news_qs.filter(is_featured=True).first()
-        news_qs = news_qs.exclude(pk=featured.pk if featured else 0)
+        news_qs = list(news_qs.exclude(pk=featured.pk if featured else 0))
     except DB_EXCEPTIONS:
         _log_database_unavailable('news_list')
+        categories = []
+        news_qs = []
+        active_cat = None
+        featured = None
 
     return render(request, 'core/news.html', {
         'news_list': news_qs,
@@ -126,7 +140,7 @@ def news_list(request):
 def news_detail(request, slug):
     try:
         news = get_object_or_404(News, slug=slug, is_published=True)
-        related = News.objects.filter(is_published=True).exclude(pk=news.pk)[:3]
+        related = list(News.objects.filter(is_published=True).exclude(pk=news.pk)[:3])
     except DB_EXCEPTIONS:
         logger.exception(
             'Database is unavailable while rendering news_detail for slug=%s.',
@@ -143,14 +157,18 @@ def gallery(request):
     items_qs = []
     active_cat = None
     try:
-        categories = GalleryCategory.objects.all()
+        categories = list(GalleryCategory.objects.all())
         items_qs = GalleryItem.objects.filter(is_published=True)
 
         if category_slug:
             active_cat = get_object_or_404(GalleryCategory, slug=category_slug)
             items_qs = items_qs.filter(category=active_cat)
+        items_qs = list(items_qs)
     except DB_EXCEPTIONS:
         _log_database_unavailable('gallery')
+        categories = []
+        items_qs = []
+        active_cat = None
 
     return render(request, 'core/gallery.html', {
         'items': items_qs,

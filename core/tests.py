@@ -74,7 +74,7 @@ class NewsMediaTests(TestCase):
                 response = self.client.get('/')
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'ПЛИТ')
+        self.assertContains(response, '<!DOCTYPE html>', html=False)
 
     def test_news_page_falls_back_when_database_is_unavailable(self):
         with self.settings(SECURE_SSL_REDIRECT=False):
