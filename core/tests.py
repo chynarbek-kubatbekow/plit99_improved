@@ -83,3 +83,17 @@ class NewsMediaTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Новости')
+    def test_news_detail_renders_html_content_without_escaped_paragraph_tags(self):
+        news = News.objects.create(
+            title='HTML content news',
+            slug='html-content-news',
+            excerpt='Short excerpt',
+            content='<p>First paragraph.</p><p>Second paragraph.</p>',
+        )
+
+        with self.settings(SECURE_SSL_REDIRECT=False):
+            response = self.client.get(f'/news/{news.slug}/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<p>First paragraph.</p>', html=False)
+        self.assertNotContains(response, '&lt;p&gt;First paragraph.&lt;/p&gt;', html=False)

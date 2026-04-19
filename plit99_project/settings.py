@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_RUNTIME_DATA_DIR = BASE_DIR / '.runtime-data'
 
 
 def env_bool(name, default=False):
@@ -33,7 +34,9 @@ def env_path(name, default):
 
 SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_urlsafe(64))
 DEBUG = env_bool('DEBUG', True)
-DATA_DIR = env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', BASE_DIR))
+ENABLE_DATABASE = env_bool('ENABLE_DATABASE', True)
+BOOTSTRAP_DATABASE = env_bool('BOOTSTRAP_DATABASE', ENABLE_DATABASE)
+DATA_DIR = env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', DEFAULT_RUNTIME_DATA_DIR))
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', '127.0.0.1,localhost')
@@ -70,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'core.middleware.AdminDatabaseGuardMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -93,11 +97,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'plit99_project.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{(DATA_DIR / 'db.sqlite3').as_posix()}",
-    )
-}
+if ENABLE_DATABASE:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=f"sqlite:///{(DATA_DIR / 'db.sqlite3').as_posix()}",
+        )
+    }
+else:
+    # Public pages can fall back to JSON snapshots when the database is disabled.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
 
 if DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
     DATABASES['default']['CONN_MAX_AGE'] = 0

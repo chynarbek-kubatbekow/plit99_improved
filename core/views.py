@@ -12,7 +12,18 @@ logger = logging.getLogger(__name__)
 DB_EXCEPTIONS = (OperationalError, ProgrammingError)
 
 
-def _log_database_unavailable(page_name):
+def _is_missing_table_error(exc):
+    return 'no such table' in str(exc).lower()
+
+
+def _log_database_unavailable(page_name, exc):
+    if _is_missing_table_error(exc):
+        logger.warning(
+            'Database tables are not ready while rendering %s. Returning a safe fallback.',
+            page_name,
+        )
+        return
+
     logger.exception(
         'Database is unavailable while rendering %s. Returning a safe fallback.',
         page_name,
@@ -71,8 +82,8 @@ def index(request):
         latest_news = list(News.objects.filter(is_published=True).exclude(
             pk=featured_news.pk if featured_news else 0
         )[:3])
-    except DB_EXCEPTIONS:
-        _log_database_unavailable('index')
+    except DB_EXCEPTIONS as exc:
+        _log_database_unavailable('index', exc)
         _, _, _, featured_news, latest_news = _snapshot_news_state()
         latest_news = latest_news[:3]
 
@@ -130,8 +141,8 @@ def media_hub(request):
             active_gallery_cat = get_object_or_404(GalleryCategory, slug=gallery_cat_slug)
             gallery_qs = gallery_qs.filter(category=active_gallery_cat)
         gallery_items = list(gallery_qs)
-    except DB_EXCEPTIONS:
-        _log_database_unavailable('media_hub')
+    except DB_EXCEPTIONS as exc:
+        _log_database_unavailable('media_hub', exc)
         snapshot, news_categories, active_news_cat, featured, news_list = _snapshot_news_state(
             request.GET.get('news_cat')
         )
@@ -174,8 +185,8 @@ def news_list(request):
 
         featured = news_qs.filter(is_featured=True).first()
         news_qs = list(news_qs.exclude(pk=featured.pk if featured else 0))
-    except DB_EXCEPTIONS:
-        _log_database_unavailable('news_list')
+    except DB_EXCEPTIONS as exc:
+        _log_database_unavailable('news_list', exc)
         _, categories, active_cat, featured, news_qs = _snapshot_news_state(category_slug)
 
     return render(request, 'core/news.html', {
@@ -190,11 +201,8 @@ def news_detail(request, slug):
     try:
         news = get_object_or_404(News, slug=slug, is_published=True)
         related = list(News.objects.filter(is_published=True).exclude(pk=news.pk)[:3])
-    except DB_EXCEPTIONS:
-        logger.exception(
-            'Database is unavailable while rendering news_detail for slug=%s.',
-            slug,
-        )
+    except DB_EXCEPTIONS as exc:
+        _log_database_unavailable(f'news_detail[{slug}]', exc)
         snapshot = load_content_snapshot()
         news = next(
             (
@@ -227,8 +235,8 @@ def gallery(request):
             active_cat = get_object_or_404(GalleryCategory, slug=category_slug)
             items_qs = items_qs.filter(category=active_cat)
         items_qs = list(items_qs)
-    except DB_EXCEPTIONS:
-        _log_database_unavailable('gallery')
+    except DB_EXCEPTIONS as exc:
+        _log_database_unavailable('gallery', exc)
         _, categories, active_cat, items_qs = _snapshot_gallery_state(category_slug)
 
     return render(request, 'core/gallery.html', {

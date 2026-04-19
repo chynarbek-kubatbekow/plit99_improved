@@ -5,6 +5,7 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.files.storage import default_storage
+from django.db import OperationalError, ProgrammingError
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -14,6 +15,11 @@ from .media_utils import mirror_media_file
 
 logger = logging.getLogger(__name__)
 SNAPSHOT_FILENAME = 'site_content.json'
+DB_EXCEPTIONS = (OperationalError, ProgrammingError)
+
+
+def _is_missing_table_error(exc):
+    return 'no such table' in str(exc).lower()
 
 
 @dataclass(slots=True)
@@ -136,10 +142,23 @@ def _write_json_atomic(path, payload):
 def _serialize_from_database():
     from .models import GalleryCategory, GalleryItem, News, NewsCategory
 
-    news_categories = list(NewsCategory.objects.all())
-    gallery_categories = list(GalleryCategory.objects.all())
-    news_items = list(News.objects.select_related('category').all())
-    gallery_items = list(GalleryItem.objects.select_related('category').all())
+    try:
+        news_categories = list(NewsCategory.objects.all())
+        gallery_categories = list(GalleryCategory.objects.all())
+        news_items = list(News.objects.select_related('category').all())
+        gallery_items = list(GalleryItem.objects.select_related('category').all())
+    except DB_EXCEPTIONS as exc:
+        if _is_missing_table_error(exc):
+            logger.warning(
+                'Database tables are not ready while building snapshot. '
+                'Returning an empty snapshot payload instead.'
+            )
+        else:
+            logger.exception(
+                'Could not read database content while building snapshot. '
+                'Returning an empty snapshot payload instead.'
+            )
+        return _empty_payload()
 
     payload = _empty_payload()
     payload['news_categories'] = [

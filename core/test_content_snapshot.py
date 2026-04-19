@@ -6,11 +6,13 @@ from pathlib import Path
 from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import OperationalError
 from django.test import TestCase
 from PIL import Image
 
+from .content_snapshot import export_content_snapshot
 from .models import GalleryCategory, GalleryItem, News, NewsCategory
 
 
@@ -45,6 +47,35 @@ class ContentSnapshotTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'name="title"', html=False)
+
+    def test_admin_returns_maintenance_page_when_database_breaks(self):
+        user = get_user_model().objects.create_superuser(
+            username='guard-admin',
+            email='guard-admin@example.com',
+            password='test-pass-123',
+        )
+
+        with self.settings(
+            SESSION_ENGINE='django.contrib.sessions.backends.signed_cookies',
+            MESSAGE_STORAGE='django.contrib.messages.storage.cookie.CookieStorage',
+            SECURE_SSL_REDIRECT=False,
+        ):
+            self.client.force_login(user)
+            with patch.object(User, 'has_module_perms', side_effect=OperationalError('db is down')):
+                response = self.client.get('/admin/')
+
+        self.assertEqual(response.status_code, 503)
+        self.assertContains(response, 'Админка временно недоступна', status_code=503)
+
+    def test_snapshot_export_returns_empty_payload_when_tables_are_unavailable(self):
+        with patch('core.models.NewsCategory.objects.all', side_effect=OperationalError('no such table')):
+            snapshot_path = export_content_snapshot()
+
+        payload = json.loads(snapshot_path.read_text(encoding='utf-8'))
+        self.assertEqual(payload['news_categories'], [])
+        self.assertEqual(payload['gallery_categories'], [])
+        self.assertEqual(payload['news'], [])
+        self.assertEqual(payload['gallery'], [])
 
     def test_snapshot_and_media_mirror_support_public_fallback(self):
         snapshot_dir = make_temp_dir('test-snapshots')

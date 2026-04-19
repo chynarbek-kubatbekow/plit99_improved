@@ -19,17 +19,20 @@
 
 1. Create a new **Web Service** from your GitHub repo.
 2. Render should detect `render.yaml` automatically.
-3. For this project, the recommended setup is **SQLite on the Render persistent disk**.
-4. No separate Render database is required if you keep the default SQLite setup.
-5. If you want the site content to be loaded automatically on the first deploy, add:
+3. For a free/open deployment, use the no-database mode configured in `render.yaml`.
+4. The app will use the built-in JSON snapshot `core/fixtures/site_content.json` and in-repo media files instead of a Render database.
+5. In Render env vars, set:
 
 ```text
-LOAD_FIXTURE_ON_DEPLOY=true
+ENABLE_DATABASE=false
+BOOTSTRAP_DATABASE=false
+LOAD_FIXTURE_ON_DEPLOY=false
+SERVE_MEDIA_FILES=true
 ```
 
-After the first successful deploy, switch it back to `false` or remove it.
+6. If you later decide to use paid persistent storage, switch to `ENABLE_DATABASE=true`, `BOOTSTRAP_DATABASE=true`, and add `APP_DATA_DIR=/data` to Render env vars.
 
-6. If you do not have Render Shell, you can create the Django admin user automatically during deploy with:
+If you do not have Render Shell, you can create the Django admin user automatically during deploy with:
 
 ```text
 DJANGO_SUPERUSER_USERNAME=admin
@@ -43,22 +46,18 @@ The deploy script will create the superuser only if it does not already exist.
 
 ### Database
 
-The project is now configured like this:
+This project supports two Render modes:
 
-- local development: SQLite by default
-- Render production: SQLite on the persistent disk by default
-- uploaded media: persistent disk via `APP_DATA_DIR`
+- Free/no-disk mode: `ENABLE_DATABASE=false`, `BOOTSTRAP_DATABASE=false`.
+  In this mode the site renders from `core/fixtures/site_content.json` and from in-repo media files.
+- Paid/disk mode: `ENABLE_DATABASE=true`, `BOOTSTRAP_DATABASE=true`, and `APP_DATA_DIR=/data`.
+  In that case the app stores SQLite and media on a persistent disk.
 
-If `DATABASE_URL` is not set, the app uses SQLite automatically.
+If `DATABASE_URL` is not set and `ENABLE_DATABASE=false`, the app does not use persistent database storage.
 
-For Render, nothing special needs to be "activated" inside Django:
+For free Render deployment, no special disk mount is required.
 
-- the persistent disk is attached in `render.yaml`
-- `APP_DATA_DIR` points Django to that disk
-- `python manage.py migrate` creates the SQLite database there automatically on first deploy
-- `RENDER_EXTERNAL_HOSTNAME` and `RENDER_EXTERNAL_URL` are used automatically for `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`
-
-This project also applies SQLite-safe settings for Render:
+This project also applies SQLite-safe settings for Render when database mode is enabled:
 
 - `WEB_CONCURRENCY=1` to avoid multi-process write conflicts
 - SQLite connection timeout
@@ -90,12 +89,14 @@ Your project uses `media/` for uploaded files.
 
 On Render, local filesystem storage is not permanent across deploys unless you attach persistent storage or move media to an external storage service.
 
-This project now stores uploaded media inside `APP_DATA_DIR`. In `render.yaml`, that path is mounted to a persistent disk by default.
+For the free/no-disk deployment mode, rely on media files that are committed into the repository under `media/`.
+The app can serve those files from the repo using `SERVE_MEDIA_FILES=true`.
 
 That means:
 
 - static files are safe because `collectstatic` + WhiteNoise are configured
-- uploaded media files need a persistent disk or external object storage
+- news pages using repo-stored cover images will work without a Render disk
+- uploaded media through admin will not persist after redeploy without persistent storage
 
 ### Content Snapshot Fallback
 

@@ -33,36 +33,40 @@ def optimize_uploaded_image(uploaded_file):
     if not uploaded_file or getattr(uploaded_file, '_committed', False):
         return None
 
-    uploaded_file.open('rb')
-    with Image.open(uploaded_file) as image:
-        image = ImageOps.exif_transpose(image)
-        image.thumbnail(MAX_IMAGE_SIZE, Image.Resampling.LANCZOS)
+    try:
+        uploaded_file.open('rb')
+        with Image.open(uploaded_file) as image:
+            image = ImageOps.exif_transpose(image)
+            image.thumbnail(MAX_IMAGE_SIZE, Image.Resampling.LANCZOS)
 
-        has_alpha = image.mode in {'RGBA', 'LA'} or (
-            image.mode == 'P' and 'transparency' in image.info
-        )
-
-        output = BytesIO()
-        stem = Path(uploaded_file.name).stem or uuid4().hex
-
-        if has_alpha:
-            optimized = image.convert('RGBA')
-            optimized.save(output, format='PNG', optimize=True, compress_level=7)
-            extension = '.png'
-        else:
-            optimized = image.convert('RGB')
-            optimized.save(
-                output,
-                format='JPEG',
-                quality=82,
-                optimize=True,
-                progressive=True,
+            has_alpha = image.mode in {'RGBA', 'LA'} or (
+                image.mode == 'P' and 'transparency' in image.info
             )
-            extension = '.jpg'
 
-    optimized_file = ContentFile(output.getvalue())
-    optimized_file.name = f'{stem}{extension}'
-    return optimized_file
+            output = BytesIO()
+            stem = Path(uploaded_file.name).stem or uuid4().hex
+
+            if has_alpha:
+                optimized = image.convert('RGBA')
+                optimized.save(output, format='PNG', optimize=True, compress_level=7)
+                extension = '.png'
+            else:
+                optimized = image.convert('RGB')
+                optimized.save(
+                    output,
+                    format='JPEG',
+                    quality=82,
+                    optimize=True,
+                    progressive=True,
+                )
+                extension = '.jpg'
+
+        optimized_file = ContentFile(output.getvalue())
+        optimized_file.name = f'{stem}{extension}'
+        return optimized_file
+    except Exception as e:
+        logger.warning('Could not optimize uploaded image %s: %s', getattr(uploaded_file, 'name', 'unknown'), e)
+        return None
 
 
 def _safe_media_path(root, relative_path):
