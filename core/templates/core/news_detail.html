@@ -30,7 +30,9 @@
 
         <div class="section-panel news-detail-content-panel">
           <div class="news-detail-body" style="max-width:none">
-            {{ news.content|render_rich_text }}
+            {% autoescape off %}
+              {{ news.content|render_rich_text }}
+            {% endautoescape %}
           </div>
         </div>
 

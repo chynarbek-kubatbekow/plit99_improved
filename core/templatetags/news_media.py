@@ -1,8 +1,6 @@
-from django.conf import settings
 from django import template
+from django.conf import settings
 from django.templatetags.static import static
-
-from core.media_utils import stored_media_exists
 
 register = template.Library()
 
@@ -33,9 +31,8 @@ def news_static_cover(news):
     cover_image = getattr(news, 'cover_image', None)
     if cover_image and getattr(cover_image, 'name', ''):
         try:
-            if stored_media_exists(cover_image.name):
-                return cover_image.url
-        except OSError:
+            return cover_image.url
+        except (OSError, ValueError):
             pass
 
     slug = getattr(news, 'slug', '')

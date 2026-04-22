@@ -1,12 +1,10 @@
-from io import BytesIO
-from pathlib import Path
 import shutil
 import uuid
-from unittest.mock import patch
+from io import BytesIO
+from pathlib import Path
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.db import OperationalError
 from django.test import TestCase
 from PIL import Image
 
@@ -32,14 +30,14 @@ class NewsMediaTests(TestCase):
         try:
             with self.settings(MEDIA_ROOT=media_root, SERVE_MEDIA_FILES=True):
                 upload = SimpleUploadedFile(
-                    'Большое Фото Для Новости.JPG',
+                    'large-news-cover.JPG',
                     build_test_image(),
                     content_type='image/jpeg',
                 )
                 news = News.objects.create(
-                    title='Тестовая новость',
-                    excerpt='Короткое описание',
-                    content='Полный текст новости',
+                    title='Test news',
+                    excerpt='Short excerpt',
+                    content='Full text',
                     cover_image=upload,
                 )
 
@@ -68,21 +66,6 @@ class NewsMediaTests(TestCase):
         finally:
             shutil.rmtree(media_root, ignore_errors=True)
 
-    def test_home_page_falls_back_when_database_is_unavailable(self):
-        with self.settings(SECURE_SSL_REDIRECT=False):
-            with patch('core.views.News.objects.filter', side_effect=OperationalError('db is down')):
-                response = self.client.get('/')
-
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '<!DOCTYPE html>', html=False)
-
-    def test_news_page_falls_back_when_database_is_unavailable(self):
-        with self.settings(SECURE_SSL_REDIRECT=False):
-            with patch('core.views.NewsCategory.objects.all', side_effect=OperationalError('db is down')):
-                response = self.client.get('/news/')
-
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Новости')
     def test_news_detail_renders_html_content_without_escaped_paragraph_tags(self):
         news = News.objects.create(
             title='HTML content news',
@@ -97,3 +80,37 @@ class NewsMediaTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '<p>First paragraph.</p>', html=False)
         self.assertNotContains(response, '&lt;p&gt;First paragraph.&lt;/p&gt;', html=False)
+
+    def test_news_detail_renders_escaped_html_content_as_real_paragraphs(self):
+        news = News.objects.create(
+            title='Escaped HTML content news',
+            slug='escaped-html-content-news',
+            excerpt='Short excerpt',
+            content='&lt;p&gt;Paragraph from database.&lt;/p&gt;',
+        )
+
+        with self.settings(SECURE_SSL_REDIRECT=False):
+            response = self.client.get(f'/news/{news.slug}/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<p>Paragraph from database.</p>', html=False)
+        self.assertNotContains(response, '&lt;p&gt;Paragraph from database.&lt;/p&gt;', html=False)
+
+    def test_news_detail_renders_double_escaped_html_content_as_real_paragraphs(self):
+        news = News.objects.create(
+            title='Double escaped HTML content news',
+            slug='double-escaped-html-content-news',
+            excerpt='Short excerpt',
+            content='&amp;lt;p&amp;gt;Double escaped paragraph.&amp;lt;/p&amp;gt;',
+        )
+
+        with self.settings(SECURE_SSL_REDIRECT=False):
+            response = self.client.get(f'/news/{news.slug}/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<p>Double escaped paragraph.</p>', html=False)
+        self.assertNotContains(
+            response,
+            '&amp;lt;p&amp;gt;Double escaped paragraph.&amp;lt;/p&amp;gt;',
+            html=False,
+        )

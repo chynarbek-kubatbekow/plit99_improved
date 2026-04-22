@@ -34,8 +34,6 @@ def env_path(name, default):
 
 SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_urlsafe(64))
 DEBUG = env_bool('DEBUG', True)
-ENABLE_DATABASE = env_bool('ENABLE_DATABASE', True)
-BOOTSTRAP_DATABASE = env_bool('BOOTSTRAP_DATABASE', ENABLE_DATABASE)
 DATA_DIR = env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', DEFAULT_RUNTIME_DATA_DIR))
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -73,7 +71,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'core.middleware.AdminDatabaseGuardMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -97,20 +94,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'plit99_project.wsgi.application'
 
-if ENABLE_DATABASE:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=f"sqlite:///{(DATA_DIR / 'db.sqlite3').as_posix()}",
-        )
-    }
-else:
-    # Public pages can fall back to JSON snapshots when the database is disabled.
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-        }
-    }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f"sqlite:///{(DATA_DIR / 'db.sqlite3').as_posix()}",
+    )
+}
 
 if DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
     DATABASES['default']['CONN_MAX_AGE'] = 0
@@ -142,14 +130,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = DATA_DIR / 'media'
 MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
 SERVE_MEDIA_FILES = env_bool('SERVE_MEDIA_FILES', True)
-LOCAL_MEDIA_MIRROR_ROOT = BASE_DIR / 'media'
-LOCAL_MEDIA_MIRROR_ENABLED = env_bool('LOCAL_MEDIA_MIRROR_ENABLED', True)
-if LOCAL_MEDIA_MIRROR_ENABLED:
-    LOCAL_MEDIA_MIRROR_ROOT.mkdir(parents=True, exist_ok=True)
-
-CONTENT_SNAPSHOT_DIR = env_path('CONTENT_SNAPSHOT_DIR', DATA_DIR / 'content_snapshot')
-CONTENT_SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
-PROJECT_CONTENT_SNAPSHOT_PATH = BASE_DIR / 'core' / 'fixtures' / 'site_content.json'
 
 CSRF_TRUSTED_ORIGINS = env_list('CSRF_TRUSTED_ORIGINS')
 if render_external_url and render_external_url not in CSRF_TRUSTED_ORIGINS:
@@ -162,10 +142,11 @@ if render_hostname:
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
-default_session_engine = 'django.contrib.sessions.backends.signed_cookies' if os.getenv('RENDER') else 'django.contrib.sessions.backends.db'
-SESSION_ENGINE = os.getenv('SESSION_ENGINE', default_session_engine)
-default_message_storage = 'django.contrib.messages.storage.cookie.CookieStorage' if SESSION_ENGINE == 'django.contrib.sessions.backends.signed_cookies' else 'django.contrib.messages.storage.fallback.FallbackStorage'
-MESSAGE_STORAGE = os.getenv('MESSAGE_STORAGE', default_message_storage)
+SESSION_ENGINE = os.getenv('SESSION_ENGINE', 'django.contrib.sessions.backends.db')
+MESSAGE_STORAGE = os.getenv(
+    'MESSAGE_STORAGE',
+    'django.contrib.messages.storage.fallback.FallbackStorage',
+)
 
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
