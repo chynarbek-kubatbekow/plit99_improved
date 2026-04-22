@@ -12,6 +12,7 @@ services:
       sizeGB: 1
     buildCommand: "bash build.sh"
     startCommand: "bash start.sh"
+    healthCheckPath: /healthz/
     autoDeploy: true
     envVars:
       - key: PYTHON_VERSION
@@ -30,3 +31,9 @@ services:
         value: 1
       - key: SERVE_MEDIA_FILES
         value: true
+      - key: WHITENOISE_MANIFEST_STRICT
+        value: false
+      - key: SECURE_SSL_REDIRECT
+        value: false
+      - key: PYTHONUNBUFFERED
+        value: "1"

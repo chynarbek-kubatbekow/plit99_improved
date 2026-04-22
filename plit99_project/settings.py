@@ -1,5 +1,6 @@
 import os
 import secrets
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -33,9 +34,25 @@ def env_path(name, default):
 
 
 SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_urlsafe(64))
-DEBUG = env_bool('DEBUG', True)
-DATA_DIR = env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', DEFAULT_RUNTIME_DATA_DIR))
-DATA_DIR.mkdir(parents=True, exist_ok=True)
+IS_RENDER = env_bool('RENDER', False)
+DEBUG = env_bool('DEBUG', not IS_RENDER)
+
+
+def ensure_runtime_dir(path):
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+        return path
+    except OSError as exc:
+        print(
+            f'Warning: cannot create runtime data dir {path}: {exc}. '
+            f'Falling back to {DEFAULT_RUNTIME_DATA_DIR}.',
+            file=sys.stderr,
+        )
+        DEFAULT_RUNTIME_DATA_DIR.mkdir(parents=True, exist_ok=True)
+        return DEFAULT_RUNTIME_DATA_DIR
+
+
+DATA_DIR = ensure_runtime_dir(env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', DEFAULT_RUNTIME_DATA_DIR)))
 
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', '127.0.0.1,localhost')
 render_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME')
