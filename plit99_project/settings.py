@@ -2,7 +2,6 @@ import os
 import secrets
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
 
 import dj_database_url
 
@@ -34,8 +33,7 @@ def env_path(name, default):
 
 
 SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_urlsafe(64))
-IS_RENDER = env_bool('RENDER', False)
-DEBUG = env_bool('DEBUG', not IS_RENDER)
+DEBUG = env_bool('DEBUG', True)
 
 
 def ensure_runtime_dir(path):
@@ -52,23 +50,9 @@ def ensure_runtime_dir(path):
         return DEFAULT_RUNTIME_DATA_DIR
 
 
-DATA_DIR = ensure_runtime_dir(env_path('APP_DATA_DIR', env_path('RENDER_DISK_PATH', DEFAULT_RUNTIME_DATA_DIR)))
+DATA_DIR = ensure_runtime_dir(env_path('APP_DATA_DIR', DEFAULT_RUNTIME_DATA_DIR))
 
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', '127.0.0.1,localhost')
-render_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME')
-if render_hostname and render_hostname not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append(render_hostname)
-render_external_url = os.getenv('RENDER_EXTERNAL_URL', '').strip()
-if render_external_url:
-    render_external_host = urlparse(render_external_url).hostname
-    if render_external_host and render_external_host not in ALLOWED_HOSTS:
-        ALLOWED_HOSTS.append(render_external_host)
-
-# Render can provision a new onrender.com hostname when the service is renamed
-# or recreated. Accepting the platform subdomain keeps deploys from breaking on
-# a stale hard-coded host value.
-if os.getenv('RENDER') and '.onrender.com' not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append('.onrender.com')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -157,12 +141,6 @@ MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
 SERVE_MEDIA_FILES = env_bool('SERVE_MEDIA_FILES', True)
 
 CSRF_TRUSTED_ORIGINS = env_list('CSRF_TRUSTED_ORIGINS')
-if render_external_url and render_external_url not in CSRF_TRUSTED_ORIGINS:
-    CSRF_TRUSTED_ORIGINS.append(render_external_url)
-if render_hostname:
-    render_origin = f'https://{render_hostname}'
-    if render_origin not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS.append(render_origin)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True

@@ -66,31 +66,31 @@ plit99_project/
 
 ### 1. Установка зависимостей
 
-```bash
+```powershell
 pip install django pillow
 ```
 
 ### 2. Применить миграции
 
-```bash
+```powershell
 python manage.py migrate
 ```
 
 ### 3. Заполнить тестовыми данными
 
-```bash
+```powershell
 python manage.py seed_data
 ```
 
 ### 4. Создать администратора
 
-```bash
+```powershell
 python manage.py createsuperuser
 ```
 
 ### 5. Запустить сервер
 
-```bash
+```powershell
 python manage.py runserver
 ```
 
