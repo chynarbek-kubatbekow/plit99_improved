@@ -593,7 +593,53 @@
   </div>
 </div>
 
-<section class="section-sm">
+<section class="section section-offwhite career-test-section" id="career-direction-test">
+  <div class="container">
+    <div class="career-test-shell" data-career-test>
+      <div class="career-test-topline">
+        <span class="career-test-badge" data-career-phase>Профориентация за 3-4 минуты</span>
+        <div class="career-test-progress hidden" data-career-progress aria-hidden="true">
+          <div class="career-test-progress-label">
+            <span data-career-progress-text>Вопрос 1 из 12</span>
+            <span data-career-progress-percent>0%</span>
+          </div>
+          <div class="career-test-progress-track">
+            <div class="career-test-progress-fill" data-career-progress-fill></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-test-screen active" data-career-screen="start">
+        <div class="career-test-intro">
+          <div>
+            <div class="section-eyebrow career-test-eyebrow"><span class="label">Мини-тест</span></div>
+            <h2 class="career-test-title">Не уверен, какое направление выбрать?</h2>
+            <p class="career-test-copy">Ответь на короткие ситуации про интересы, стиль решения задач и выдержку. В конце тест покажет одно советуемое направление и одно предполагаемое направление для пробы.</p>
+            <button class="btn btn-gold" type="button" data-career-start>Начать тест</button>
+          </div>
+          <ul class="career-test-info" aria-label="Что внутри теста">
+            <li>8 вопросов про интересы и тип задач</li>
+            <li>1-2 практических кейса по самым близким кластерам</li>
+            <li>2 вопроса про монотонность и сложные моменты</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="career-test-screen" data-career-screen="quiz" aria-live="polite">
+        <div class="career-test-kicker" data-career-kicker>Interest Layer</div>
+        <h2 class="career-test-question" data-career-question></h2>
+        <p class="career-test-note hidden" data-career-note></p>
+        <div class="career-test-options" data-career-options></div>
+      </div>
+
+      <div class="career-test-screen" data-career-screen="result">
+        <div class="career-test-result" data-career-result></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm career-cta-section">
   <div class="container">
     <div class="cta-block" data-aos>
       <div class="cta-block-inner">
@@ -610,4 +656,7 @@
 
 {% endblock %}
 
-
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static 'js/career-test.js' %}?v=20260504-career-test-2"></script>
+{% endblock %}
