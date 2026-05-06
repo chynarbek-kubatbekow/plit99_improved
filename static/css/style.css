@@ -148,7 +148,7 @@ button{font-family:var(--font-body)}
 .nav-logo-emblem{width:55px;height:55px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;overflow:hidden;border:none;box-shadow:none;outline:none}
 .nav-logo-emblem::before{display:none}
 .nav-logo-emblem span{font-family:var(--font-display);color:var(--white);font-size:1.1rem;font-weight:900;position:relative}
-.site-logo-mark{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;border-radius:50%;transform:scale(1.16);transform-origin:center;border:none;box-shadow:none;outline:none}
+.site-logo-mark{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;border-radius:50%;transform:none;transform-origin:center;border:none;box-shadow:none;outline:none}
 .nav-logo-text{display:flex;flex-direction:column;justify-content:center;line-height:1.08;padding-top:0}
 .nav-logo-text .name{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--primary-900);letter-spacing:-.01em}
 .nav-logo-text .sub{font-size:.68rem;color:var(--warm-600);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
@@ -532,7 +532,7 @@ linear-gradient(180deg,rgba(8,22,38,.08) 0%,rgba(8,22,38,.18) 100%)}
 @media(min-width:1024px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}}
 .footer-brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
 .footer-brand-badge,.footer-brand-emblem{width:58px;height:58px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden;border:none;box-shadow:none;outline:none}
-.footer-brand-badge .site-logo-mark,.footer-brand-emblem .site-logo-mark{width:100%;height:100%;object-fit:cover;border-radius:50%;border:none;box-shadow:none;outline:none;transform:scale(1.16);transform-origin:center}
+.footer-brand-badge .site-logo-mark,.footer-brand-emblem .site-logo-mark{width:100%;height:100%;object-fit:contain;border-radius:50%;border:none;box-shadow:none;outline:none;transform:none;transform-origin:center}
 .footer-brand-badge span,.footer-brand-emblem span{font-family:var(--font-display);color:var(--white);font-size:1rem}
 .footer-brand-name{font-family:var(--font-display);font-weight:700;font-size:.88rem}
 .footer-brand-sub{font-size:.651rem;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
