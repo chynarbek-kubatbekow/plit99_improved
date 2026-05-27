@@ -1,15 +1,15 @@
-﻿{% extends 'core/base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 {% block title %}О лицее{% endblock %}
 {% block nav_about %}active{% endblock %}
 {% block content %}
 
-<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197511/pexels-photo-8197511.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('{% static 'img/about-hero.png' %}')">
   <div class="container page-hero-inner about-hero-inner">
     <div class="page-hero-eyebrow"><span class="badge badge-white">О лицее</span></div>
     <h1 class="display-lg page-hero-title about-hero-title">
-      <span>Лицей с сильной историей и современным</span>
-      <span>технологическим вектором</span>
+      <span>Современный IT лицей</span>
+      <span>с государственным статусом</span>
     </h1>
     <p class="lead page-hero-subtitle">История, статус, достижения и ключевая информация о лицее.</p>
   </div>
@@ -42,8 +42,8 @@
       <div class="about-mission-grid mission-spotlight-grid">
         <div class="mission-spotlight-copy">
           <div class="section-eyebrow"><span class="label" style="color:rgba(255,255,255,.78)">Миссия лицея</span></div>
-          <h2 class="h1" style="color:#fff;margin-bottom:1rem">Лицей даёт сильный старт в образовании, профессии и будущем</h2>
-          <p class="lead" style="margin-bottom:1rem">Задача лицея — дать молодым людям доступ к качественному технологическому образованию, которое не отрывает их от реальности, а готовит к практическим задачам, университетскому продолжению и международной среде.</p>
+          <h2 class="h1" style="color:#fff;margin-bottom:1rem">Лицей дает сильный старт и готовит к реальным задачам — в учёбе, профессии и жизни</h2>
+          <p class="lead" style="margin-bottom:1rem">Лицей даёт технологическое образование, которое готовит к практике, поступлению в вуз и работе в международной среде.</p>
         </div>
         <div class="mission-spotlight-points">
           <div class="mission-point">

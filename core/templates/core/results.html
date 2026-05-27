@@ -1,10 +1,10 @@
-﻿{% extends 'core/base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Результаты и возможности{% endblock %}
 {% block nav_res %}active{% endblock %}
 {% block content %}
 
-<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8197511/pexels-photo-8197511.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('{% static 'img/opportunities-hero.png' %}')">
   <div class="container page-hero-inner">
     <div class="page-hero-eyebrow"><span class="badge badge-white">Результаты</span></div>
     <h1 class="display-lg page-hero-title">Что получает выпускник после лицея</h1>

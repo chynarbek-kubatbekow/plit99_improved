@@ -1,10 +1,10 @@
-﻿{% extends 'core/base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Обучение{% endblock %}
 {% block nav_edu %}active{% endblock %}
 {% block content %}
 
-<section class="page-hero page-hero-photo" style="--page-hero-image:url('https://images.pexels.com/photos/8199133/pexels-photo-8199133.jpeg?auto=compress&cs=tinysrgb&w=1600')">
+<section class="page-hero page-hero-photo" style="--page-hero-image:url('{% static 'img/education-hero.png' %}')">
   <div class="container page-hero-inner education-hero-inner">
     <div class="page-hero-eyebrow"><span class="badge badge-white">Обучение</span></div>
     <h1 class="display-lg page-hero-title education-hero-title">
@@ -614,7 +614,7 @@
           <div>
             <div class="section-eyebrow career-test-eyebrow"><span class="label">Мини-тест</span></div>
             <h2 class="career-test-title">Не уверен, какое направление выбрать?</h2>
-            <p class="career-test-copy">Ответь на короткие ситуации про интересы, стиль решения задач и выдержку. В конце тест покажет одно советуемое направление и одно предполагаемое направление для пробы.</p>
+            <p class="career-test-copy">Ответь на 8 вопросов про интересы и стиль работы — и узнай своё направление. В конце тест покажет одно советуемое направление и одно предполагаемое направление для пробы.</p>
             <button class="btn btn-gold" type="button" data-career-start>Начать тест</button>
           </div>
           <ul class="career-test-info" aria-label="Что внутри теста">
