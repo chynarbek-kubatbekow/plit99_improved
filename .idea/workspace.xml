@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8f2a347c-e0fd-42f2-8a16-67589659b555" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.render-empty-db-test-2/empty.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.render-empty-db-test/empty.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.runtime-data/content_snapshot/site_content.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/1eb44c8226f5405b93cc17efb35ef5c9/news/covers/d5cdf2aac0594d25a19859e21a61105e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/206562d057bc404db1446b517718e7be/news/covers/5dcfb7cc85a3436b86b9174fae596735.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/4e70fbf7246c4226bed2227dc4c8b6fc/news/covers/56f289494fae477a9af0a68ac6e05c32.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/5790d27da57145609eb1ee53c98e4d45/news/covers/2924964b1d134d60be321d2525c97015.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/5fce8715e73c4a12ac757dc0d1478416/news/covers/c93958679528402c805101445b75167c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/6103fe75114f44538539287fad27d7e5/news/covers/85790d1088164e3f96b797c0a34cd48f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/9a9e0d5bdbb647428418064f1ac127bf/news/covers/8881168835ec4c11afe161a776d7ae98.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/bf045f92e00342218685f862c520ec26/news/covers/32cbd0bb7cbf446a95a27251552586e0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/c054a723a123455c901543c156f46130/news/covers/c4dd1b6466a34bf8bc61eebed4ba957a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/d151e1ce69e6480881fc1f80df14f473/news/covers/e76abceed25248978647d72ddee12407.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media-mirror/f555c029c93f422e94fb4877f474986a/news/covers/5ae2d93fca15493981a72e7b1e7b91a3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/002fb73c0baa490cb79ec4242774f13b/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/0bdcd37f41074abf86bfd99ad7a3b326/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/1d205a308e264f148f20d8b42551ec2e/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/2aa46fedd55146d0aa886974455467e4/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/2b33314772ae4f638437658a6e9c1380/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/3b5fbcd79c1b49b3b9202ec61038f32a/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/4100627d50e249df9f23c5a652cf004a/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/46d873bff2784d4aa506897af7e0c0ff/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/48af59cd380b4334a8e0439d56a6d340/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/4b0b3959e3194c048390b447d14a3481/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/4d61d67aa72f487e8ed655b695dc60de/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/4e707c73754446f8971c254a8566e06f/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/5f4a2fcaf1c5437894c4e8764e235b28/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/7b38de4983bf40f3b779fa39b19ad456/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/843e6de7eb094ad39f3adcfc44ead48d/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/9ba8999207b74617a6cf5d6a64c5f317/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/9ef457c56f804fffb648a965a869a06c/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/a2cfcbe425bb440699fd3a2360a842ad/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/a30a05603113474db6cb6f69c21c4841/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/a74cb00776a1465ebc08ede5c02b19f8/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/a7f4dc2708024b7eb2d291372a3d4e70/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/add9002b0088452a9b9a9df57d0c63fb/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/b24a1fc472f4487087ee3769dcdc43cf/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/b8c603000e4648dfb5ec3a70696ed579/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/bd5eae017d904c04ae25ec1b87e2ec73/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/c67fb23674fe43b0bab9f7dfda59a254/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/c7f907a903884ab0a7b5563f0d2f6fcb/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/cbd39bbafe5d42f485a30c8f7e04e5a9/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/df26b8a521b048478113fcf8ead7cff2/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/e14b6eee48fd414eb388659978eedde4/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/ea672fb31832490392a62c955083f212/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/f28e062dfa464029a9d5bebdf953252e/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/f65222e2caff4837a13a4f3003d4d147/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/f7554bc45dc944d28f821c94cd8201d8/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/f96183a5e5c143ddb8928ef9223502f1/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/fc18d21e96e041e386b9645e107737f6/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.test-media/ff729ef85cfa4fb3a69e8f1f29ffbb09/news/covers/cached.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/admission.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/admission.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/contacts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/media_hub.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/media_hub.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3FJ1oW4cfLewB2gbayHcvPwbsyv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="plit99_improved" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.manage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-164cda30dcd9-0af03a5fa574-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26830.99" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f2a347c-e0fd-42f2-8a16-67589659b555" name="Changes" comment="" />
+      <created>1781778533739</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781778533739</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
@@ -7,7 +8,8 @@ urlpatterns = [
     path('education/',    views.education,   name='education'),
     path('results/',      views.results,     name='results'),
     path('admission/',    views.admission,   name='admission'),
-    path('media/',        views.media_hub,   name='media_hub'),
+    path('news-gallery/', views.media_hub,   name='media_hub'),
+    path('media/',        RedirectView.as_view(pattern_name='media_hub', permanent=True)),
     path('news/',         views.news_list,   name='news'),
     path('news/<slug:slug>/', views.news_detail, name='news_detail'),
     path('gallery/',      views.gallery,     name='gallery'),

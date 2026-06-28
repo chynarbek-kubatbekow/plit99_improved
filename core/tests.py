@@ -6,6 +6,7 @@ from pathlib import Path
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
+from django.urls import reverse
 from PIL import Image
 
 from .models import News
@@ -25,6 +26,17 @@ def make_workspace_media_root():
 
 
 class NewsMediaTests(TestCase):
+    def test_media_hub_uses_non_media_url_to_avoid_static_directory_conflict(self):
+        with self.settings(SECURE_SSL_REDIRECT=False):
+            self.assertEqual(reverse('media_hub'), '/news-gallery/')
+
+            response = self.client.get('/news-gallery/')
+            redirect = self.client.get('/media/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(redirect.status_code, 301)
+        self.assertEqual(redirect['Location'], '/news-gallery/')
+
     def test_news_cover_upload_is_resized_and_saved_to_safe_path(self):
         media_root = make_workspace_media_root()
         try:

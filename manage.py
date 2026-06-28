@@ -17,7 +17,7 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-# py manage.py runserver
 
+# py manage.py runserver
 if __name__ == '__main__':
     main()
